@@ -1,199 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootcamp Hackathon - Vibe Coding</title>
-    <!-- Importação da JetBrains Mono -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Importação simulada da fonte 'Wide' com fallback estendido */
-        @font-face {
-            font-family: 'Wide';
-            src: local('Impact'), local('Arial Black'), sans-serif;
-            font-weight: 900;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: #191919;
-            color: #22ffaa; /* Corpo em JetBrains Mono Verde Neon */
-            font-family: 'JetBrains Mono', monospace;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 40px 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 800px;
-            width: 100%;
-            margin: 0 auto;
-            z-index: 2;
-        }
-
-        /* Títulos de Seção com Fonte Wide, Grandes e Neon */
-        h1.section-title {
-            font-family: 'Wide', 'Arial Black', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            text-transform: uppercase;
-            line-height: 0.9;
-            color: #ff1f8f; /* Rosa Neon no título principal */
-            margin-bottom: 40px;
-            letter-spacing: -1px;
-        }
-
-        .menu-cronograma {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-
-        .item-aula {
-            display: flex;
-            position: relative;
-            padding-left: 80px; /* Espaço para a numeração lateral */
-        }
-
-        /* Numeração Lateral com Linha + Número Rotacionado */
-        .decoracao-lateral {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .numero-rotacionado {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #ffd400; /* Amarelo Neon */
-            transform: rotate(-90deg);
-            transform-origin: center;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        .linha-vertical {
-            width: 2px;
-            flex: 1;
-            background: linear-gradient(to bottom, #ffd400, transparent);
-        }
-
-        .conteudo-aula {
-            flex: 1;
-        }
-
-        .conteudo-aula h2 {
-            font-family: 'Wide', 'Arial Black', sans-serif;
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        /* Alternância de cores nos títulos das aulas */
-        .item-aula:nth-child(1) h2 { color: #22ffaa; } /* Verde */
-        .item-aula:nth-child(2) h2 { color: #ffd400; } /* Amarelo */
-
-        .conteudo-aula a {
-            color: inherit;
-            text-decoration: none;
-            display: block;
-        }
-
-        .conteudo-aula a:hover h2 {
-            text-shadow: 0 0 10px currentColor;
-        }
-
-        .descricao-aula {
-            font-size: 1rem;
-            color: #ffffff; /* Texto de apoio branco puro para contraste */
-            opacity: 0.8;
-            max-width: 600px;
-        }
-
-        /* Dots Decorativos no Canto Inferior Esquerdo (Custom Shape) */
-        .dots-decorativos {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            display: grid;
-            grid-template-columns: repeat(4, 8px);
-            gap: 8px;
-            z-index: 1;
-            opacity: 0.4;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            background-color: #ff1f8f;
-            border-radius: 50%;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vibe Coding — Aulas</title>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
+<body class="home-page">
 
-    <div class="container">
-        <h1 class="section-title">Vibe<br>Coding</h1>
-        
-        <nav>
-            <ul class="menu-cronograma">
-                
-                <!-- Aula 1 -->
-                <li class="item-aula">
-                    <div class="decoracao-lateral">
-                        <span class="numero-rotacion0">01</span>
-                        <div class="linha-vertical"></div>
-                    </div>
-                    <div class="conteudo-aula">
-                        <a href="aula1/">
-                            <h2>Prompt Engineering</h2>
-                            <p class="descricao-aula">Como conversar com a IA para ela programar com você — mesmo sem saber código. Bloco 0 a Bloco 7.</p>
-                        </a>
-                    </div>
-                </li>
+  <div class="container">
+    <h1 class="section-title">Vibe<br>Coding</h1>
 
-                <!-- Aula 2 -->
-                <li class="item-aula">
-                    <div class="decoracao-lateral">
-                        <span class="numero-rotacionado">02</span>
-                        <div class="linha-vertical"></div>
-                    </div>
-                    <div class="conteudo-aula">
-                        <a href="aula2/">
-                            <h2>Técnicas Avançadas</h2>
-                            <p class="descricao-aula">Estruturas agênticas, encadeamento de raciocínio (CoT) e automação em ambiente local.</p>
-                        </a>
-                    </div>
-                </li>
+    <nav aria-label="Cronograma de aulas">
+      <ul class="menu-cronograma">
 
-            </ul>
-        </nav>
-    </div>
+        <li class="item-aula">
+          <div class="decoracao-lateral">
+            <span class="numero-rotacionado">01</span>
+            <div class="linha-vertical"></div>
+          </div>
 
-    <!-- Grid de bolinhas no canto inferior esquerdo -->
-    <div class="dots-decorativos">
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-    </div>
+          <div class="conteudo-aula">
+            <a href="./aulas/prompt-engineering/">
+              <h2>Prompt Engineering</h2>
+              <p class="descricao-aula">
+                Como conversar com a IA para ela programar com você — mesmo sem saber código.
+              </p>
+            </a>
+          </div>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+
+  <div class="dots-decorativos" aria-hidden="true">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
 
 </body>
 </html>
