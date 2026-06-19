@@ -1,0 +1,1291 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aula: Prompt Engineering para Vibe Coding</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+
+    :root {
+      --dark: #191919;
+      --light: #ffffff;
+      --green: #22ffaa;
+      --pink: #ff1f8f;
+      --yellow: #ffd400;
+      --ink: #191919;
+      --muted: rgba(255,255,255,.64);
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --wide: 'Wide', 'Arial Black', 'Impact', 'Inter Tight', system-ui, sans-serif;
+      --slide-pad-x: clamp(40px, 5.2vw, 92px);
+      --slide-pad-y: clamp(28px, 4.3vh, 56px);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: #0b0b0b;
+      overflow: hidden;
+      font-family: var(--mono);
+    }
+
+    body { color: var(--green); }
+
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: var(--slide-pad-y) var(--slide-pad-x);
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide.dark { background: var(--dark); color: var(--green); }
+    .slide.light { background: var(--light); color: var(--ink); }
+
+    .slide.light::before,
+    .slide.light::after {
+      content: '';
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      filter: blur(72px);
+      opacity: .38;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .slide.light::before {
+      background: var(--green);
+      top: -120px;
+      right: 8vw;
+    }
+
+    .slide.light::after {
+      background: var(--pink);
+      bottom: -150px;
+      left: 18vw;
+    }
+
+    .slide.dark::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 78% 16%, rgba(255,31,143,.18), transparent 26%),
+        radial-gradient(circle at 28% 82%, rgba(34,255,170,.10), transparent 30%),
+        linear-gradient(135deg, transparent, rgba(255,212,0,.035));
+      z-index: -1;
+    }
+
+    .section-title,
+    h1,
+    h2,
+    h3 {
+      font-family: var(--wide);
+      font-weight: 900;
+      letter-spacing: -.06em;
+      margin: 0;
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    h1 { font-size: clamp(68px, 9.8vw, 168px); max-width: min(1500px, calc(100vw - 2 * var(--slide-pad-x) - 90px)); }
+    h2 { font-size: clamp(50px, 6.7vw, 116px); max-width: min(1540px, calc(100vw - 2 * var(--slide-pad-x) - 90px)); }
+    h3 { font-size: clamp(27px, 3.15vw, 48px); letter-spacing: -.04em; }
+
+    .accent-green { color: var(--green); }
+    .accent-pink { color: var(--pink); }
+    .accent-yellow { color: var(--yellow); }
+
+    .kicker {
+      font-size: clamp(16px, 1.45vw, 24px);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 14px;
+      color: var(--yellow);
+    }
+
+    .dark .kicker { color: var(--pink); }
+
+    .subtitle {
+      margin-top: 24px;
+      max-width: min(1420px, calc(100vw - 2 * var(--slide-pad-x) - 90px));
+      font-size: clamp(22px, 2.55vw, 40px);
+      line-height: 1.28;
+      font-weight: 600;
+    }
+
+    .dark .subtitle { color: var(--green); }
+    .light .subtitle { color: #0b6f4d; }
+
+    .content {
+      margin-top: clamp(20px, 3.2vh, 36px);
+      display: grid;
+      gap: clamp(22px, 2.4vw, 42px);
+      font-size: clamp(20px, 1.7vw, 30px);
+      line-height: 1.32;
+      width: calc(100% - 82px);
+      max-width: none;
+      flex: 1;
+      align-content: start;
+    }
+
+    .light .content { color: #111; }
+    .dark .content { color: var(--green); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(28px, 4vw, 64px);
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(18px, 2vw, 34px);
+      align-items: stretch;
+    }
+
+    .card {
+      position: relative;
+      padding: clamp(24px, 2vw, 36px);
+      border: 2px solid currentColor;
+      border-radius: 26px;
+      background: rgba(255,255,255,.05);
+      box-shadow: 10px 10px 0 rgba(0,0,0,.22);
+    }
+
+    .light .card {
+      background: rgba(255,255,255,.74);
+      color: var(--ink);
+      border-color: rgba(25,25,25,.9);
+      box-shadow: 10px 10px 0 rgba(34,255,170,.55);
+      backdrop-filter: blur(10px);
+    }
+
+    .dark .card { border-color: var(--green); }
+
+    .card.pink { border-color: var(--pink); box-shadow: 10px 10px 0 rgba(255,31,143,.28); }
+    .card.yellow { border-color: var(--yellow); box-shadow: 10px 10px 0 rgba(255,212,0,.25); }
+    .card.green { border-color: var(--green); }
+
+    .label {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .code {
+      white-space: pre-wrap;
+      font-size: clamp(14px, 1.18vw, 19px);
+      line-height: 1.36;
+      padding: clamp(18px, 1.5vw, 26px);
+      border-radius: 18px;
+      background: #111;
+      color: var(--green);
+      border: 1px solid rgba(34,255,170,.5);
+      overflow: hidden;
+    }
+
+    .light .code {
+      background: var(--dark);
+      color: var(--green);
+      border: 1px solid rgba(25,25,25,.95);
+    }
+
+    ul, ol { margin: 0; padding-left: 1.25em; }
+    li { margin: clamp(8px, 1vh, 14px) 0; }
+
+    .big-list {
+      display: grid;
+      gap: clamp(16px, 2vh, 28px);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: clamp(25px, 2.35vw, 42px);
+      font-weight: 800;
+    }
+
+    .big-list li::before {
+      content: '●';
+      margin-right: 14px;
+      color: var(--pink);
+    }
+
+    .metric {
+      font-family: var(--wide);
+      font-size: clamp(54px, 5.8vw, 104px);
+      letter-spacing: -.08em;
+      color: var(--pink);
+      line-height: .9;
+    }
+
+    .quote {
+      font-size: clamp(34px, 4.05vw, 74px);
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      max-width: 1080px;
+    }
+
+    .quote span { color: var(--yellow); }
+
+    .image-slot {
+      min-height: clamp(320px, 43vh, 620px);
+      border: 3px dashed currentColor;
+      border-radius: 32px;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(34,255,170,.08), rgba(255,31,143,.08)),
+        repeating-linear-gradient(45deg, transparent, transparent 14px, rgba(255,255,255,.06) 14px, rgba(255,255,255,.06) 16px);
+      color: inherit;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .light .image-slot {
+      color: #0a513a;
+      background:
+        linear-gradient(135deg, rgba(34,255,170,.20), rgba(255,31,143,.12)),
+        repeating-linear-gradient(45deg, transparent, transparent 13px, rgba(25,25,25,.06) 13px, rgba(25,25,25,.06) 15px);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: clamp(14px, 1.22vw, 20px);
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .table th,
+    .table td {
+      padding: clamp(12px, 1.2vw, 20px) clamp(14px, 1.35vw, 22px);
+      text-align: left;
+      border-bottom: 1px solid rgba(25,25,25,.22);
+    }
+
+    .table th {
+      background: var(--dark);
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .dark .table th { background: rgba(255,255,255,.08); color: var(--yellow); }
+    .dark .table td { border-bottom-color: rgba(34,255,170,.25); }
+
+    .number-rail {
+      position: absolute;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      opacity: .95;
+      pointer-events: none;
+    }
+
+    .number-rail .line {
+      width: 2px;
+      height: 170px;
+      background: currentColor;
+    }
+
+    .number-rail .num {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-weight: 900;
+      letter-spacing: .12em;
+      font-size: 15px;
+    }
+
+    .dark .number-rail { color: var(--green); }
+    .light .number-rail { color: var(--pink); }
+
+    .dots {
+      position: absolute;
+      left: 36px;
+      bottom: 34px;
+      display: grid;
+      grid-template-columns: repeat(5, 9px);
+      gap: 10px;
+      opacity: .95;
+      pointer-events: none;
+    }
+
+    .dots i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 19px 0 0 var(--pink), 38px 0 0 var(--yellow);
+    }
+
+    .progress {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--green), var(--pink), var(--yellow));
+      width: 0%;
+      z-index: 40;
+      transition: width .25s ease;
+    }
+
+    .controls {
+      position: fixed;
+      right: 22px;
+      bottom: 18px;
+      z-index: 50;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button {
+      border: 1px solid rgba(255,255,255,.3);
+      background: rgba(25,25,25,.86);
+      color: var(--green);
+      font-family: var(--mono);
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+    }
+
+    button:hover { color: var(--yellow); border-color: var(--yellow); }
+
+    .notes-panel {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      width: min(470px, calc(100vw - 36px));
+      max-height: calc(100vh - 92px);
+      display: none;
+      z-index: 60;
+      background: rgba(25,25,25,.94);
+      color: var(--green);
+      border: 2px solid var(--pink);
+      border-radius: 28px;
+      box-shadow: 16px 16px 0 rgba(255,31,143,.25);
+      padding: 22px;
+      overflow: auto;
+      backdrop-filter: blur(18px);
+    }
+
+    .notes-panel.open { display: block; }
+    .notes-panel h4 {
+      margin: 0 0 14px;
+      font-family: var(--wide);
+      font-size: 28px;
+      letter-spacing: -.05em;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+    .notes-panel p,
+    .notes-panel li { font-size: 15px; line-height: 1.5; }
+    .notes-panel .close { float: right; margin-left: 12px; }
+
+    .notes { display: none; }
+
+    .footer-hint {
+      position: absolute;
+      left: var(--slide-pad-x);
+      bottom: 30px;
+      font-size: 13px;
+      color: rgba(255,255,255,.5);
+    }
+
+    .light .footer-hint { color: rgba(25,25,25,.55); }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: clamp(12px, 1.3vw, 24px);
+      margin-top: clamp(28px, 5vh, 56px);
+    }
+
+    .timeline .step {
+      border-top: 4px solid var(--pink);
+      padding-top: clamp(14px, 1.5vw, 24px);
+      font-size: clamp(14px, 1.22vw, 20px);
+      font-weight: 800;
+    }
+
+    .step b { display: block; color: var(--pink); font-size: clamp(30px, 3.2vw, 54px); margin-bottom: 8px; }
+
+    .flow {
+      display: flex;
+      align-items: stretch;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-weight: 900;
+    }
+
+    .flow span {
+      padding: 14px 17px;
+      border: 2px solid currentColor;
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+    }
+
+    .flow .arrow { border: 0; padding-inline: 2px; align-self: center; color: var(--pink); }
+
+    .mini { font-size: clamp(15px, 1.18vw, 20px); line-height: 1.42; opacity: .92; }
+
+    .stamp {
+      display: inline-block;
+      transform: rotate(-2deg);
+      border: 4px solid var(--pink);
+      color: var(--pink);
+      padding: 10px 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      border-radius: 6px;
+    }
+
+
+
+    /* Ajuste final para projeção 16:9: mais tela útil, menos “card pequeno no centro”. */
+    :root {
+      --slide-pad-x: clamp(54px, 6vw, 98px);
+      --slide-pad-y: clamp(30px, 4.6vh, 54px);
+    }
+
+    h1 { font-size: clamp(70px, 9.4vw, 150px); }
+    h2 { font-size: clamp(50px, 6.15vw, 96px); max-width: calc(100% - 125px); }
+    h3 { font-size: clamp(28px, 3.05vw, 46px); }
+
+    .section-title,
+    h1,
+    h2 { text-wrap: balance; }
+
+    .kicker {
+      font-size: clamp(16px, 1.42vw, 22px);
+      margin-bottom: clamp(12px, 1.6vh, 22px);
+    }
+
+    .subtitle {
+      max-width: min(1180px, calc(100% - 120px));
+      font-size: clamp(23px, 2.32vw, 36px);
+      line-height: 1.28;
+    }
+
+    .content {
+      width: calc(100% - 92px);
+      max-width: none;
+      min-height: clamp(330px, 47vh, 555px);
+      align-content: center;
+      gap: clamp(20px, 3vh, 34px);
+      font-size: clamp(20px, 1.68vw, 29px);
+    }
+
+    .slide > .subtitle + .content,
+    .slide > h2 + .content {
+      margin-top: clamp(26px, 4.2vh, 52px);
+    }
+
+    .two-col {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: stretch;
+    }
+
+    .three-col {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .card {
+      min-height: clamp(205px, 25vh, 300px);
+      padding: clamp(25px, 2.45vw, 40px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .three-col .card,
+    .two-col .card {
+      height: 100%;
+    }
+
+    .card h3 { margin-bottom: 12px; }
+    .card p { margin: 0; }
+
+    .code {
+      font-size: clamp(14px, 1.18vw, 20px);
+      line-height: 1.34;
+      padding: clamp(18px, 1.6vw, 27px);
+    }
+
+    .content.two-col > .code {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .content > .code:only-child {
+      min-height: clamp(350px, 51vh, 650px);
+      display: flex;
+      align-items: center;
+    }
+
+    .quote {
+      font-size: clamp(34px, 3.9vw, 66px);
+      max-width: none;
+    }
+
+    .big-list {
+      font-size: clamp(24px, 2.2vw, 36px);
+      gap: clamp(14px, 2vh, 25px);
+    }
+
+    .metric { font-size: clamp(54px, 5.4vw, 88px); }
+
+    .image-slot {
+      min-height: clamp(310px, 40vh, 510px);
+      font-size: clamp(22px, 2.05vw, 34px);
+      line-height: 1.25;
+    }
+
+    .two-col .image-slot {
+      min-height: clamp(340px, 47vh, 630px);
+    }
+
+    .three-col .image-slot {
+      min-height: clamp(200px, 24vh, 290px);
+    }
+
+    .content > .image-slot:only-child {
+      min-height: clamp(415px, 55vh, 735px);
+    }
+
+    .content > .card:only-child {
+      min-height: clamp(300px, 43vh, 555px);
+    }
+
+    .table {
+      min-height: 48vh;
+      font-size: clamp(15px, 1.22vw, 20px);
+    }
+
+    .table th,
+    .table td {
+      padding: clamp(13px, 1.2vw, 20px) clamp(15px, 1.45vw, 25px);
+    }
+
+    .timeline {
+      width: calc(100% - 92px);
+      min-height: clamp(360px, 48vh, 520px);
+      align-items: stretch;
+      gap: clamp(12px, 1.2vw, 18px);
+    }
+
+    .timeline .step {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: clamp(15px, 1.22vw, 20px);
+      line-height: 1.25;
+      padding: clamp(16px, 2vh, 26px) 10px 0;
+    }
+
+    .step b {
+      font-size: clamp(32px, 3vw, 50px);
+      line-height: .9;
+    }
+
+    .flow span {
+      font-size: clamp(17px, 1.42vw, 23px);
+      padding: clamp(15px, 1.55vw, 24px) clamp(18px, 1.75vw, 28px);
+    }
+
+    .mini { font-size: clamp(16px, 1.22vw, 20px); }
+    .label { font-size: clamp(13px, 1vw, 16px); width: fit-content; }
+
+    @media (min-aspect-ratio: 16/10) {
+      .content { min-height: clamp(360px, 50vh, 560px); }
+      .image-slot { min-height: clamp(325px, 42vh, 525px); }
+      .content > .image-slot:only-child { min-height: clamp(430px, 57vh, 760px); }
+    }
+
+    @media (max-width: 900px) {
+      body { overflow: hidden; }
+      .two-col, .three-col { grid-template-columns: 1fr; }
+      .slide { overflow-y: auto; }
+      .number-rail { display: none; }
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+      .controls { left: 18px; right: auto; }
+    }
+
+    @media print {
+      html, body { overflow: visible; height: auto; }
+      .deck { height: auto; overflow: visible; }
+      .slide { position: relative; display: block !important; page-break-after: always; min-height: 100vh; }
+      .controls, .progress, .notes-panel { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck">
+
+    <section class="slide dark active" data-accent="green">
+      <div class="kicker">Bootcamp Hackathon • 60 min</div>
+      <h1><span class="accent-green">Prompt</span><br><span class="accent-pink">Engineering</span><br><span class="accent-yellow">para Vibe Coding</span></h1>
+      <p class="subtitle">Como conversar com a IA para ela programar com você — mesmo sem saber código.</p>
+      <div class="footer-hint">Use ← → para navegar • clique em “Notas” para o roteiro do apresentador</div>
+      <aside class="notes"><p>Abra com energia: “Hoje vocês vão aprender a conversar com a IA para ela programar por vocês. Não precisa saber código; precisa saber pedir direito.”</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Mapa da aula</div>
+      <h2>Estrutura geral</h2>
+      <div class="timeline">
+        <div class="step"><b>0</b>5 min<br>Abertura</div>
+        <div class="step"><b>1</b>8 min<br>Modelo mental</div>
+        <div class="step"><b>2</b>10 min<br>Bom prompt</div>
+        <div class="step"><b>3</b>12 min<br>Técnicas base</div>
+        <div class="step"><b>4</b>10 min<br>Código</div>
+        <div class="step"><b>5</b>4 min<br>Ferramentas</div>
+        <div class="step"><b>6</b>8 min<br>Agentes</div>
+        <div class="step"><b>7</b>5 min<br>Checklist + Q&A</div>
+      </div>
+      <aside class="notes"><p>Mostre que a aula é prática. O objetivo é sair com um prompt melhor na mão, não decorar teoria.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Bloco 0</div>
+      <h2><span class="accent-green">O que é</span><br><span class="accent-pink">vibe coding?</span></h2>
+      <div class="content two-col">
+        <div class="quote">“Você descreve o que quer em linguagem natural, a IA escreve o código, e você só lê o resultado se algo der errado.”</div>
+        <div class="card yellow">
+          <h3 class="accent-yellow">Tradução pro hackathon</h3>
+          <p>Vocês descrevem a ideia. A IA programa. O segredo está em <strong>como vocês descrevem</strong>.</p>
+        </div>
+      </div>
+      <aside class="notes"><p>Explique que o termo foi popularizado por Andrej Karpathy. Para o público não técnico, mantenha simples: é briefing + iteração.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Prompt ruim vs prompt bom</div>
+      <h2>A diferença não está só no modelo</h2>
+      <div class="content two-col">
+        <div class="card pink">
+          <span class="label accent-pink">Prompt ruim</span>
+          <div class="code">faz um site de vendas</div>
+          <p class="mini">Resultado provável: genérico, sem identidade, sem restrições e com bugs.</p>
+        </div>
+        <div class="card green">
+          <span class="label accent-green">Prompt bom</span>
+          <div class="code">Crie uma landing page para uma cafeteria artesanal chamada “Grão Bravo”, paleta marrom/creme, com hero, 3 cards de produtos e formulário de newsletter. Use HTML + Tailwind, mobile-first.</div>
+          <p class="mini">Resultado provável: muito mais perto de algo usável.</p>
+        </div>
+      </div>
+      <aside class="notes"><p>Este é o primeiro ponto visual forte. Deixe claro: a diferença está na especificidade e no contexto.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Espaço para imagem</div>
+      <h2>Exemplo visual: antes e depois</h2>
+      <div class="content two-col">
+        <div class="image-slot">INSERIR PRINT<br>Prompt ruim → site genérico</div>
+        <div class="image-slot">INSERIR PRINT<br>Prompt bom → resultado usável</div>
+      </div>
+      <aside class="notes"><p>Coloque dois prints lado a lado. Reforce que a IA copia o nível de detalhe que recebe.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Por que AI Studio?</div>
+      <h2><span class="accent-yellow">Ferramenta foco:</span><br>Google AI Studio</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Grátis</h3><p>Não precisa de cartão de crédito para começar.</p></div>
+        <div class="card pink"><h3>Contexto enorme</h3><p>Gemini com janela de contexto grande: cabe muito material no prompt.</p></div>
+        <div class="card yellow"><h3>Controle</h3><p>Permite ajustar temperatura e system instructions sem API.</p></div>
+      </div>
+      <aside class="notes"><p>Fale o link: aistudio.google.com. Não gaste tempo em cadastro; foque no motivo de uso no hackathon.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Bloco 1</div>
+      <h2>Como a LLM <span class="accent-pink">“pensa”</span></h2>
+      <p class="subtitle">Modelo mental simples: uma máquina de completar texto que prevê a próxima palavra mais provável.</p>
+      <div class="content">
+        <div class="image-slot">INSERIR IMAGEM/DIAGRAMA<br>“Autocompletar do celular turbinado”</div>
+      </div>
+      <aside class="notes"><p>Evite transformers, atenção e matemática. A analogia do teclado é suficiente para o público.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Consequências práticas</div>
+      <h2>O que muda no seu prompt?</h2>
+      <div class="content">
+        <ol class="big-list">
+          <li>Ela responde no estilo de quem você invoca.</li>
+          <li>Ela não sabe o que você não disse.</li>
+          <li>Ela usa o contexto da conversa atual.</li>
+          <li>Ela pode alucinar com confiança.</li>
+          <li>A ordem do prompt importa.</li>
+        </ol>
+      </div>
+      <aside class="notes"><p>Dê exemplos rápidos: “como engenheiro sênior”, “como criança de 10 anos”, “como designer”.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Demo ao vivo</div>
+      <h2>Especificidade<br><span class="accent-yellow">vence esperança</span></h2>
+      <div class="content two-col">
+        <div class="card pink"><span class="label">Prompt 1</span><div class="code">escreva um poema</div></div>
+        <div class="card green"><span class="label">Prompt 2</span><div class="code">escreva um poema curto, em português, sobre o cheiro de café pela manhã, no estilo de Manoel de Barros</div></div>
+      </div>
+      <aside class="notes"><p>Abra o AI Studio e rode os dois prompts no mesmo modelo. Pergunte para a turma qual ficou melhor e por quê.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Bloco 2</div>
+      <h2>Anatomia de um bom prompt</h2>
+      <div class="content three-col">
+        <div class="card"><div class="metric">1</div><h3>Papel</h3><p>Quem a IA está sendo.</p></div>
+        <div class="card"><div class="metric">2</div><h3>Tarefa</h3><p>O que ela precisa fazer.</p></div>
+        <div class="card"><div class="metric">3</div><h3>Contexto</h3><p>O que ela precisa saber.</p></div>
+        <div class="card"><div class="metric">4</div><h3>Formato</h3><p>Como a resposta deve sair.</p></div>
+        <div class="card"><div class="metric">5</div><h3>Exemplos</h3><p>Como se parece “certo”.</p></div>
+      </div>
+      <aside class="notes"><p>Faça a turma repetir os cinco ingredientes. Esse é o “esqueleto” principal da aula.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Template universal</div>
+      <h2>Copie e cole este esqueleto</h2>
+      <div class="content">
+        <div class="code">Você é [PAPEL].
+
+Sua tarefa é [TAREFA EM UMA FRASE].
+
+Contexto:
+- [fato 1]
+- [fato 2]
+- [restrição importante]
+
+Formato da resposta:
+- [estrutura, linguagem, tamanho]
+
+Exemplo de saída esperada:
+[mostrar se possível]</div>
+      </div>
+      <aside class="notes"><p>Diga: “Não decorem palavras difíceis. Decorem a estrutura.”</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Exemplo aplicado</div>
+      <h2>Ruim: 8 palavras</h2>
+      <div class="content">
+        <div class="card pink">
+          <span class="label accent-pink">Prompt fraco</span>
+          <div class="code">me faz um app de lista de tarefas</div>
+        </div>
+        <p class="subtitle">Sem papel, sem requisitos, sem formato, sem restrições.</p>
+      </div>
+      <aside class="notes"><p>Use este slide para preparar o contraste com o prompt padrão-ouro do próximo slide.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Exemplo aplicado</div>
+      <h2>Bom: prompt padrão-ouro</h2>
+      <div class="content two-col">
+        <div class="code">Papel:
+Desenvolvedor Frontend React com expertise em hooks modernos.
+
+Objetivo:
+Criar um componente React de lista de tarefas funcional e responsivo.
+
+Entrada:
+Componente autônomo com estado local usando hooks.</div>
+        <div class="code">Requisitos:
+- Adicionar, editar, excluir e concluir tarefas.
+- Campo com validação.
+- Design mobile e desktop.
+
+Restrições:
+- React 18+.
+- TypeScript.
+- Acessibilidade.
+- Sem libs externas de estado.</div>
+      </div>
+      <aside class="notes"><p>Avise que há termos técnicos e tudo bem. A lição é o nível de detalhe e os blocos: Papel, Objetivo, Entrada, Saída, Restrições.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Por que funciona?</div>
+      <h2>O prompt bom reduz chute</h2>
+      <div class="content two-col">
+        <div class="card green"><h3>Mais contexto</h3><p>A IA sabe o que criar, para quem criar e com quais limites.</p></div>
+        <div class="card pink"><h3>Mais formato</h3><p>A resposta sai mais previsível, com menos retrabalho.</p></div>
+      </div>
+      <p class="subtitle">Mínimo viável para o hackathon: <strong>Papel + Objetivo + Requisitos de saída.</strong></p>
+      <aside class="notes"><p>Reforce que para landing page simples não precisa de prompt gigante. Use só o que for necessário.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Exercício rápido</div>
+      <h2>Crie um prompt para<br><span class="accent-yellow">calculadora de gorjeta</span></h2>
+      <div class="content two-col">
+        <div class="card yellow"><h3>Tempo</h3><p>3 minutos individualmente.</p></div>
+        <div class="card green"><h3>Obrigatório</h3><p>Use os 5 ingredientes: papel, tarefa, contexto, formato e exemplo.</p></div>
+      </div>
+      <aside class="notes"><p>Circule pela sala. Escolha 1 ou 2 prompts e leia em voz alta. Elogie especificidade.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Bloco 3</div>
+      <h2>Técnicas fundamentais</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Zero-shot</h3><p>Pedir direto, sem exemplos.</p></div>
+        <div class="card pink"><h3>Few-shot</h3><p>Mostrar exemplos antes de pedir.</p></div>
+        <div class="card yellow"><h3>Chain-of-Thought</h3><p>Pedir raciocínio estruturado antes da resposta final.</p></div>
+      </div>
+      <aside class="notes"><p>Diga que decorar nomes não importa. O que importa é saber quando usar cada técnica.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">3.1 Zero-shot</div>
+      <h2>Pedir direto</h2>
+      <div class="content two-col">
+        <div class="card green"><span class="label">Exemplo</span><div class="code">Traduza para inglês: bom dia</div></div>
+        <div class="card pink"><h3>Quando usar</h3><ul><li>Tarefas simples.</li><li>Coisas comuns.</li><li>Quando o formato não é muito rígido.</li></ul></div>
+      </div>
+      <aside class="notes"><p>Explique que zero-shot é bom para tarefas que a IA já viu milhões de vezes.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">3.2 Few-shot</div>
+      <h2>Exemplos ensinam o padrão</h2>
+      <div class="content two-col">
+        <div class="code">Converta descrições em nomes de variáveis em camelCase.
+
+Descrição: número total de usuários ativos
+Variável: totalActiveUsers
+
+Descrição: data do último login
+Variável: lastLoginDate
+
+Descrição: lista de produtos no carrinho
+Variável:</div>
+        <div class="card green"><h3>Por que funciona?</h3><p>A IA copia o padrão do exemplo. É uma das técnicas com maior retorno por esforço.</p><p><strong>Regra prática:</strong> 2 a 5 exemplos costumam bastar.</p></div>
+      </div>
+      <aside class="notes"><p>Pergunte: “Qual variável vocês acham que a IA vai devolver?” Mostre que o padrão guia a resposta.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">3.3 Chain-of-Thought</div>
+      <h2>Pense passo a passo</h2>
+      <div class="content two-col">
+        <div class="card yellow"><h3>Forma mágica</h3><div class="code">Pense passo a passo antes de responder.</div></div>
+        <div class="card green"><h3>Forma estruturada</h3><div class="code">Primeiro, explique sua abordagem em bullets.
+Depois, escreva o código.
+Por fim, liste o que pode dar errado.</div></div>
+      </div>
+      <aside class="notes"><p>Para público iniciante, explique como “fazer a IA gastar tokens pensando”.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Debug com CoT</div>
+      <h2>Quando a IA errar código</h2>
+      <div class="content">
+        <div class="code">Esse código JavaScript não está funcionando. O botão não soma os números.
+
+[colar código]
+
+Pense passo a passo:
+1. Leia o código e descreva o que ele FAZ hoje.
+2. Descreva o que ele DEVERIA fazer.
+3. Aponte a linha exata do bug.
+4. Mostre só a linha corrigida.</div>
+      </div>
+      <aside class="notes"><p>Dica de ouro: sempre que a IA errar lógica ou código, peça diagnóstico passo a passo e linha exata.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Bloco 4</div>
+      <h2>Técnicas avançadas<br><span class="accent-pink">para código</span></h2>
+      <div class="content">
+        <div class="flow"><span>Especificar</span><span class="arrow">→</span><span>Contextualizar</span><span class="arrow">→</span><span>Configurar</span><span class="arrow">→</span><span>Iterar</span></div>
+      </div>
+      <aside class="notes"><p>Faça a transição: agora saímos de prompt genérico e vamos para uso prático em código.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">4.1 Especificação antes da execução</div>
+      <h2>Peça o plano antes do código</h2>
+      <div class="content two-col">
+        <div class="code">Antes de escrever qualquer código, me devolva:
+1. Lista de arquivos que você vai criar.
+2. O que cada arquivo faz, em uma frase.
+3. Bibliotecas que você vai usar.
+
+NÃO escreva código ainda. Aguarde meu OK.</div>
+        <div class="card pink"><h3>Por quê?</h3><p>Evita esperar um output gigante que tomou a direção errada.</p></div>
+      </div>
+      <aside class="notes"><p>Mostre que isso economiza tempo no hackathon. Plano curto primeiro, execução depois.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">4.2 Contexto é rei</div>
+      <h2>A IA só sabe<br><span class="accent-yellow">o que está no chat</span></h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Código</h3><p>Quer continuar? Cole o código atual.</p></div>
+        <div class="card pink"><h3>Design</h3><p>Quer seguir um visual? Cole cores, fontes e prints.</p></div>
+        <div class="card yellow"><h3>Estilo</h3><p>Quer imitar escrita? Cole 2 ou 3 exemplos.</p></div>
+      </div>
+      <aside class="notes"><p>Fale que no AI Studio dá para colar arquivos, PDFs e vídeos; aproveitem o contexto grande.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">4.3 System Instructions</div>
+      <h2>Uma regra para a conversa inteira</h2>
+      <div class="content two-col">
+        <div class="code">Você está ajudando um time de hackathon a construir um MVP em 24h.
+- Priorize código que FUNCIONA.
+- Use HTML + Tailwind + JS vanilla.
+- Se algo for ambíguo, pergunte UMA coisa antes de codar.
+- Responda em português.</div>
+        <div class="image-slot">INSERIR PRINT<br>Campo “System Instructions” no AI Studio</div>
+      </div>
+      <aside class="notes"><p>Mostre onde fica o campo no AI Studio. Explique que evita repetir regras em todo prompt.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">4.4 Iteração</div>
+      <h2>O ciclo do<br><span class="accent-green">vibe coder</span></h2>
+      <div class="content">
+        <div class="flow"><span>PEDIR</span><span class="arrow">→</span><span>RODAR</span><span class="arrow">→</span><span>OBSERVAR</span><span class="arrow">→</span><span>DESCREVER O ERRO</span><span class="arrow">→</span><span>PEDIR DE NOVO</span></div>
+      </div>
+      <aside class="notes"><p>Deixe claro: vibe coding não é one-shot. É loop rápido.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Como reportar erro</div>
+      <h2>Cole o erro literal</h2>
+      <div class="content two-col">
+        <div class="card pink"><span class="label accent-pink">Fraco</span><div class="code">não funcionou</div></div>
+        <div class="card green"><span class="label accent-green">Forte</span><div class="code">Ao clicar no botão “Enviar”, nada acontece. No console aparece: Uncaught TypeError: cannot read property 'value' of null. Diagnostique e corrija.</div></div>
+      </div>
+      <aside class="notes"><p>Stack trace é ouro. A IA é muito boa lendo erros literais.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">4.5 Restrições positivas</div>
+      <h2>Diga o que fazer,<br><span class="accent-pink">não só o que evitar</span></h2>
+      <div class="content two-col">
+        <div class="card pink"><h3>Evite</h3><div class="code">não use bibliotecas externas
+não escreva nada além do código</div></div>
+        <div class="card green"><h3>Prefira</h3><div class="code">use apenas HTML, CSS e JavaScript nativos
+responda apenas com o bloco de código, sem texto antes ou depois</div></div>
+      </div>
+      <aside class="notes"><p>Explique que restrições positivas reduzem ambiguidade.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">4.6 Temperatura</div>
+      <h2>Controle criatividade vs precisão</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>0–0.3</h3><p>Código, matemática e respostas factuais.</p></div>
+        <div class="card yellow"><h3>0.7–1.0</h3><p>Textos criativos, brainstorm e nomes de produto.</p></div>
+        <div class="card pink"><h3>&gt;1.0</h3><p>Quase nunca útil no hackathon.</p></div>
+      </div>
+      <aside class="notes"><p>Regra de bolso: código = baixa; copy de site = média/alta.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Bloco 5</div>
+      <h2>Panorama de<br><span class="accent-yellow">ferramentas</span></h2>
+      <p class="subtitle">Todas usam o mesmo motor por baixo: você descreve, uma LLM gera código, a ferramenta mostra o resultado.</p>
+      <aside class="notes"><p>Não precisa demonstrar todas. Mostre nomes para que a turma reconheça no hackathon.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Ferramentas</div>
+      <h2>Quem faz o quê?</h2>
+      <div class="content">
+        <table class="table">
+          <thead><tr><th>Ferramenta</th><th>O que faz</th><th>Stack</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Lovable</strong></td><td>Gera app/site completo com banco.</td><td>React + Supabase</td></tr>
+            <tr><td><strong>v0</strong></td><td>Gera tela/componente bonito.</td><td>React + Next.js + shadcn/ui</td></tr>
+            <tr><td><strong>Bolt</strong></td><td>Constrói apps no navegador.</td><td>React, Vue, Astro, Node...</td></tr>
+            <tr><td><strong>Replit Agent</strong></td><td>Constrói e hospeda.</td><td>Livre</td></tr>
+            <tr><td><strong>Cursor/Windsurf</strong></td><td>IDE com IA dentro.</td><td>Qualquer stack</td></tr>
+            <tr><td><strong>AI Studio</strong></td><td>Chat puro para copiar código.</td><td>Qualquer stack</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="notes"><p>Destaque que o prompt aprendido vale em todas elas.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Espaço para imagens</div>
+      <h2>Prints/logos das ferramentas</h2>
+      <div class="content three-col">
+        <div class="image-slot">Lovable<br>logo/print</div>
+        <div class="image-slot">v0<br>logo/print</div>
+        <div class="image-slot">Bolt<br>logo/print</div>
+        <div class="image-slot">Replit Agent<br>logo/print</div>
+        <div class="image-slot">Cursor/Windsurf<br>logo/print</div>
+        <div class="image-slot">AI Studio<br>logo/print</div>
+      </div>
+      <aside class="notes"><p>Coloque imagens reais se quiser. Mantenha a aula focada no conceito, não em propaganda.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Como escolher</div>
+      <h2>Regra prática<br><span class="accent-green">pro hackathon</span></h2>
+      <div class="content">
+        <ul class="big-list">
+          <li>App web inteiro sem mexer em código → Lovable, Bolt, Replit Agent.</li>
+          <li>Só uma tela bonita → v0.</li>
+          <li>Alguém no time programa um pouco → Cursor ou Claude Code.</li>
+          <li>Entender e copiar código → AI Studio.</li>
+        </ul>
+      </div>
+      <aside class="notes"><p>Finalize com a frase: trocar ferramenta é fácil; aprender a conversar com a IA é o que dura.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Bloco 6</div>
+      <h2>Padrões agênticos</h2>
+      <p class="subtitle">Quando a LLM usa ferramentas, lê arquivos e decide o próximo passo, ela vira um agente.</p>
+      <div class="content">
+        <div class="image-slot">INSERIR DIAGRAMA<br>LLM + ferramentas + arquivos + terminal = agente</div>
+      </div>
+      <aside class="notes"><p>Explique que Cursor, Claude Code, Lovable e v0 já funcionam como agentes em diferentes níveis.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Padrão 1</div>
+      <h2>Reflexão</h2>
+      <div class="content two-col">
+        <div class="card green"><h3>O que é?</h3><p>A IA revê o próprio trabalho antes de entregar.</p></div>
+        <div class="code">Depois de escrever o código, leia de novo como se fosse outro programador, aponte 3 possíveis bugs e corrija-os.</div>
+      </div>
+      <aside class="notes"><p>Bom para código e planos. A IA faz uma revisão antes de você receber.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Padrão 2</div>
+      <h2>Uso de ferramentas</h2>
+      <div class="content two-col">
+        <div class="card pink"><h3>Exemplos</h3><ul><li>Buscar no navegador.</li><li>Executar código.</li><li>Ler PDF.</li><li>Rodar comandos no terminal.</li></ul></div>
+        <div class="code">Use a busca do Google para confirmar a sintaxe atual da API antes de escrever o código.</div>
+      </div>
+      <aside class="notes"><p>Mostre que, quando a ferramenta existe, o prompt deve dizer explicitamente para usá-la.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Padrão 3</div>
+      <h2>Planejamento</h2>
+      <div class="content two-col">
+        <div class="card yellow"><h3>O que é?</h3><p>A IA quebra o problema em passos antes de executar.</p></div>
+        <div class="code">Quebre essa tarefa em no máximo 5 subtarefas. Execute uma de cada vez e me mostre o resultado entre elas.</div>
+      </div>
+      <aside class="notes"><p>Esse padrão evita respostas gigantes e sem controle.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Padrão 4</div>
+      <h2>Multi-agente</h2>
+      <div class="content two-col">
+        <div class="code">Aja como três pessoas em sequência:
+1. Uma PM, que escreve o que o usuário precisa.
+2. Uma designer, que descreve a tela.
+3. Uma dev, que implementa em HTML.
+
+Mostre o resultado de cada uma antes de passar para a próxima.</div>
+        <div class="image-slot">INSERIR DIAGRAMA<br>PM → Designer → Dev</div>
+      </div>
+      <aside class="notes"><p>Diga que esse truque sozinho melhora muito MVPs no hackathon.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Bloco 7</div>
+      <h2>Top 7 erros<br><span class="accent-pink">do iniciante</span></h2>
+      <div class="content two-col">
+        <ol>
+          <li>Prompt curto demais.</li>
+          <li>Não dar contexto.</li>
+          <li>Não colar erros literais.</li>
+          <li>Aceitar o primeiro resultado.</li>
+        </ol>
+        <ol start="5">
+          <li>Pedir tudo de uma vez.</li>
+          <li>Confiar cegamente em libs.</li>
+          <li>Deixar a conversa virar bagunça.</li>
+        </ol>
+      </div>
+      <aside class="notes"><p>Para cada erro, dê um exemplo de 10 segundos. Mantenha ritmo rápido.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Checklist</div>
+      <h2>Antes de apertar Enter</h2>
+      <div class="content two-col">
+        <div class="card green"><ul>
+          <li>Defini um papel para a IA?</li>
+          <li>A tarefa está em uma frase clara?</li>
+          <li>Dei contexto mínimo?</li>
+        </ul></div>
+        <div class="card pink"><ul>
+          <li>Especifiquei formato?</li>
+          <li>Se for código, pedi passo a passo?</li>
+          <li>Se já tentei, colei erro/código atual?</li>
+        </ul></div>
+      </div>
+      <aside class="notes"><p>Este slide pode ser impresso e colado na bancada do hackathon.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Recursos</div>
+      <h2>Para continuar</h2>
+      <div class="content two-col">
+        <ul>
+          <li>Google Prompting Guide / Kaggle whitepaper</li>
+          <li>OpenAI Prompting Guide</li>
+          <li>Agentic Design Patterns — Antonio Gulli</li>
+        </ul>
+        <ul>
+          <li>AI Engineering — Chip Huyen</li>
+          <li>Google AI Studio</li>
+          <li>O prompt do projeto de vocês</li>
+        </ul>
+      </div>
+      <aside class="notes"><p>Se sobrar tempo, peça para os participantes abrirem o AI Studio e escreverem o primeiro prompt do projeto real do hackathon.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Anexos</div>
+      <h2>Demos sugeridas</h2>
+      <div class="content two-col">
+        <div class="card green"><ol><li>Papel muda tudo: API para criança vs arquiteta.</li><li>Few-shot salva nomes de variáveis.</li></ol></div>
+        <div class="card pink"><ol start="3"><li>CoT vs direto em bug simples.</li><li>Iteração: landing page em 3 rodadas.</li></ol></div>
+      </div>
+      <aside class="notes"><p>Escolha 2 ou 3 demos dependendo do tempo real da turma.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Fechamento</div>
+      <h2><span class="accent-green">Prompt bom</span><br><span class="accent-pink">é briefing bom</span></h2>
+      <p class="subtitle">Papel + Tarefa + Contexto + Formato + Exemplos. Isso funciona no AI Studio, ChatGPT, Lovable, v0, Cursor e qualquer outra ferramenta.</p>
+      <div class="content"><span class="stamp">Q&A</span></div>
+      <aside class="notes"><p>Feche com perguntas. Se a turma estiver pronta, passe para prática guiada.</p></aside>
+    </section>
+
+  </main>
+
+  <div class="progress" id="progress"></div>
+  <div class="controls">
+    <button id="prevBtn" aria-label="Slide anterior">←</button>
+    <button id="notesBtn" aria-label="Mostrar notas">Notas</button>
+    <button id="nextBtn" aria-label="Próximo slide">→</button>
+  </div>
+
+  <aside class="notes-panel" id="notesPanel" aria-live="polite">
+    <button class="close" id="closeNotes">Fechar</button>
+    <h4>Notas do apresentador</h4>
+    <div id="notesContent"></div>
+  </aside>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const progress = document.getElementById('progress');
+    const notesPanel = document.getElementById('notesPanel');
+    const notesContent = document.getElementById('notesContent');
+    const notesBtn = document.getElementById('notesBtn');
+    const closeNotes = document.getElementById('closeNotes');
+    let index = Math.max(0, Math.min(slides.length - 1, Number(location.hash.replace('#', '')) - 1 || 0));
+
+    function decorateSlides() {
+      slides.forEach((slide, i) => {
+        if (!slide.querySelector('.number-rail')) {
+          const rail = document.createElement('div');
+          rail.className = 'number-rail';
+          rail.innerHTML = `<div class="line"></div><div class="num">${String(i + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}</div>`;
+          slide.appendChild(rail);
+        }
+        if (!slide.querySelector('.dots')) {
+          const dots = document.createElement('div');
+          dots.className = 'dots';
+          dots.innerHTML = '<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>';
+          slide.appendChild(dots);
+        }
+      });
+    }
+
+    function showSlide(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+      location.hash = String(index + 1);
+      updateNotes();
+    }
+
+    function updateNotes() {
+      const notes = slides[index].querySelector('.notes');
+      notesContent.innerHTML = notes ? notes.innerHTML : '<p>Sem notas para este slide.</p>';
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => showSlide(index - 1));
+    document.getElementById('nextBtn').addEventListener('click', () => showSlide(index + 1));
+    notesBtn.addEventListener('click', () => {
+      notesPanel.classList.toggle('open');
+      updateNotes();
+    });
+    closeNotes.addEventListener('click', () => notesPanel.classList.remove('open'));
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') showSlide(index + 1);
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') showSlide(index - 1);
+      if (event.key.toLowerCase() === 'n') notesPanel.classList.toggle('open');
+      if (event.key === 'Escape') notesPanel.classList.remove('open');
+    });
+
+    window.addEventListener('hashchange', () => {
+      const hashIndex = Number(location.hash.replace('#', '')) - 1;
+      if (!Number.isNaN(hashIndex)) showSlide(hashIndex);
+    });
+
+    decorateSlides();
+    showSlide(index);
+  </script>
+</body>
+</html>
