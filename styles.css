@@ -421,6 +421,37 @@ p { margin: 0; }
 
 .compare > * { min-height: 220px; }
 
+.handoff-list {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.handoff-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  padding: 15px 20px;
+  border-left: 4px solid var(--pink);
+  border-radius: 0 16px 16px 0;
+  background: rgba(23, 23, 23, .045);
+}
+
+.handoff-row:nth-child(even) { border-left-color: var(--green-dark); }
+.handoff-row > b { color: var(--pink); font-size: 1.5em; text-align: center; }
+.handoff-row span {
+  color: #8c0046;
+  font-family: var(--mono);
+  font-size: .68em;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.handoff-row > div:last-child span { color: var(--green-dark); }
+.handoff-row p { margin-top: 4px; font-size: .86em; line-height: 1.28; }
+
 .project-strip {
   display: flex;
   flex-wrap: wrap;
@@ -451,6 +482,44 @@ p { margin: 0; }
   height: 100%;
   max-height: 56vh;
   object-fit: contain;
+}
+
+.image-slot {
+  width: 100%;
+  height: clamp(300px, 42vh, 560px);
+  min-height: clamp(300px, 42vh, 560px);
+  border: 2px solid rgba(47, 255, 178, .72);
+  border-radius: var(--radius);
+  color: var(--green);
+  background:
+    linear-gradient(135deg, rgba(47, 255, 178, .10), rgba(255, 77, 166, .10)),
+    #101312;
+  box-shadow: var(--shadow);
+}
+
+.image-slot.media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.image-slot.media img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.light .image-slot {
+  color: #0a513a;
+  background:
+    linear-gradient(135deg, rgba(34, 255, 170, .20), rgba(255, 31, 143, .12)),
+    repeating-linear-gradient(45deg, transparent, transparent 13px, rgba(25, 25, 25, .06) 13px, rgba(25, 25, 25, .06) 15px);
 }
 
 .notes { display: none; }
@@ -690,6 +759,11 @@ body.home-page {
   .three-col,
   .four-col,
   .compare { grid-template-columns: 1fr; }
+  .handoff-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .handoff-row > b { text-align: left; transform: rotate(90deg); transform-origin: center; width: fit-content; }
   .card { min-height: 0; }
   .code { font-size: 17px; }
   .table { min-width: 680px; }
