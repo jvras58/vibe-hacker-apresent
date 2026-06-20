@@ -3,803 +3,138 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aula 3: Superpoderes do Agente — Tools, Skills e Além</title>
+  <title>Aula 3 — Tools: evidência antes de resposta</title>
   <link rel="stylesheet" href="../../styles.css" />
   <script src="../../script.js" defer></script>
 </head>
 <body>
-  <main class="deck" id="deck">
-
-    <section class="slide dark active">
-      <div class="kicker">Aula 3 • Bootcamp Hackathon • 35 min</div>
-      <h1><span class="accent-green">Superpoderes</span><br><span class="accent-pink">do Agente</span><br><span class="accent-yellow">Tools, Skills e Além</span></h1>
-      <p class="subtitle">Como ligar web search, leitura de arquivos, execução de código e geração de imagem para transformar a IA em uma parceira de hackathon.</p>
-      <div class="footer-hint">Use ← → para navegar • clique em “Notas” para o roteiro do apresentador</div>
-      <aside class="notes">
-        <p>Abra conectando com as duas aulas anteriores: Aula 1 ensinou a falar com a IA; Aula 2 ensinou a organizar memória; Aula 3 mostra os poderes que a IA pode usar.</p>
-      </aside>
+  <main class="deck">
+    <section class="slide dark active cover">
+      <div class="kicker">Aula 3 • 35 min • Tools</div>
+      <h1><span class="accent-green">Evidência</span><br><span class="accent-pink">antes da</span><br><span class="accent-yellow">resposta</span></h1>
+      <p class="subtitle">Como dar pesquisa, arquivos, execução e visão ao agente — sem ligar tudo o tempo inteiro.</p>
+      <aside class="notes"><p>A aula é demonstrativa. O objetivo é escolher a ferramenta certa, não decorar produtos.</p></aside>
     </section>
 
-    <section class="slide light">
-      <div class="kicker">Mapa da aula</div>
-      <h2>Estrutura geral</h2>
-      <div class="timeline">
-        <div class="step"><b>0</b>3 min<br>Abertura</div>
-        <div class="step"><b>1</b>4 min<br>Conceito de tool</div>
-        <div class="step"><b>2</b>6 min<br>Web Search</div>
-        <div class="step"><b>3</b>6 min<br>File Reading</div>
-        <div class="step"><b>4</b>5 min<br>Code Execution</div>
-        <div class="step"><b>5</b>5 min<br>Imagem</div>
-        <div class="step"><b>6</b>4 min<br>MCP + Skills</div>
-        <div class="step"><b>7</b>2 min<br>Checklist</div>
-      </div>
-      <aside class="notes">
-        <p>Deixe claro que essa aula é mais curta e mais demonstrativa. O objetivo é repertório: saber qual ferramenta ligar para qual problema.</p>
-      </aside>
+    <section class="slide light section-break">
+      <div class="kicker">Modelo mental</div>
+      <h2>Tool é uma forma de obter evidência</h2>
+      <p class="subtitle">O agente deixa de responder apenas “de cabeça” e passa a observar, consultar ou executar.</p>
+      <aside class="notes"><p>Use exemplos simples: pesquisar documentação, ler regulamento, executar teste e analisar screenshot.</p></aside>
     </section>
 
     <section class="slide dark">
-      <div class="kicker">Bloco 0</div>
-      <h2><span class="accent-green">Até agora:</span><br><span class="accent-pink">só palavras</span></h2>
-      <div class="content two-col">
-        <div class="card green">
-          <h3>Aula 1</h3>
-          <p>Você aprendeu a conversar bem com a IA usando prompts melhores.</p>
-        </div>
-        <div class="card pink">
-          <h3>Aula 2</h3>
-          <p>Você aprendeu a criar memória com spec, plan e tasks.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Faça a transição: “Hoje a IA deixa de só responder e começa a fazer coisas com ferramentas.”</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Fala de abertura</div>
-      <h2>Mãos, olhos e calculadora</h2>
+      <div class="kicker">Matriz de decisão</div>
+      <h2>Comece pela pergunta</h2>
       <div class="content">
-        <div class="quote">“Até agora vocês falaram com a IA usando só palavras. Hoje vocês vão dar <span>mãos, olhos e calculadora</span> para ela.”</div>
+        <div class="table-shell"><table class="table"><thead><tr><th>Preciso saber…</th><th>Use</th><th>Evidência</th></tr></thead><tbody><tr><td>algo atual?</td><td>Busca/web</td><td>Fontes recentes</td></tr><tr><td>algo deste projeto?</td><td>Arquivos</td><td>Código, spec e dados</td></tr><tr><td>se funciona?</td><td>Execução</td><td>Teste, log e resultado</td></tr><tr><td>como parece?</td><td>Visão/imagem</td><td>Screenshot ou referência</td></tr></tbody></table></div>
       </div>
-      <aside class="notes">
-        <p>Use essa frase como abertura da aula. É simples e ajuda público não técnico a entender tools.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">O agente cego</div>
-      <h2>Sem ferramentas,<br><span class="accent-yellow">a IA é limitada</span></h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <h3>Ela depende</h3>
-          <ul>
-            <li>Do que foi treinada.</li>
-            <li>Do que você digitou no chat.</li>
-          </ul>
-        </div>
-        <div class="card yellow">
-          <h3>Resultado</h3>
-          <p>Ela pode chutar fatos atuais, não ler arquivos e errar contas simples.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Dê exemplos rápidos: preço atual, PDF de regulamento, conta com percentual. Mostre que não é má vontade: é falta de ferramenta.</p>
-      </aside>
+      <aside class="notes"><p>Esta tabela deve virar a colinha principal do módulo.</p></aside>
     </section>
 
     <section class="slide light">
-      <div class="kicker">Virada de chave</div>
-      <h2>Com tools, a IA faz</h2>
-      <div class="content three-col">
-        <div class="card green"><h3>Pesquisa</h3><p>Busca fatos atuais em tempo real.</p></div>
-        <div class="card pink"><h3>Lê</h3><p>Entende PDFs, imagens, vídeos e planilhas.</p></div>
-        <div class="card yellow"><h3>Executa</h3><p>Roda código, calcula, valida e gera gráficos.</p></div>
+      <div class="kicker">Busca</div>
+      <h2>Use quando o tempo muda a resposta</h2>
+      <div class="content compare">
+        <article class="card green"><h3>Bom uso</h3><p>Documentação atual, preço, limite, notícia, legislação ou disponibilidade.</p></article>
+        <article class="card pink"><h3>Peça também</h3><p>Data, link, fonte primária e indicação do que foi inferido.</p></article>
       </div>
-      <aside class="notes">
-        <p>Frase para fixar no próximo slide: sem tools a IA sabe muito; com tools ela faz muito.</p>
-      </aside>
+      <aside class="notes"><p>Mostre uma pergunta atual relacionada à stack escolhida pela turma.</p></aside>
     </section>
 
     <section class="slide dark">
-      <div class="kicker">Frase para fixar</div>
-      <h2>Sem tools,<br><span class="accent-green">a IA sabe muito</span></h2>
+      <div class="kicker">Arquivos</div>
+      <h2>O melhor contexto pode já estar com vocês</h2>
+      <div class="content three-col">
+        <article class="card green"><h3>Design</h3><p>Wireframe, tokens e screenshots.</p></article>
+        <article class="card pink"><h3>Projeto</h3><p>Spec, código, logs e README.</p></article>
+        <article class="card yellow"><h3>Evento</h3><p>Regulamento, critérios e cronograma.</p></article>
+      </div>
+      <aside class="notes"><p>Oriente a remover dados pessoais e segredos antes de anexar arquivos.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Execução</div>
+      <h2>Peça resultado verificável</h2>
+      <div class="content two-col">
+        <article class="card green"><h3>Útil para</h3><ul class="check-list"><li>Rodar testes</li><li>Validar JSON</li><li>Analisar CSV</li><li>Reproduzir bugs</li></ul></article>
+        <article class="card yellow"><h3>Saída esperada</h3><p>Comando executado, resultado, falhas encontradas e próximo teste recomendado.</p></article>
+      </div>
+      <aside class="notes"><p>Diferencie “escrever código” de “executar e verificar código”.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Visão</div>
+      <h2>Screenshot é entrada, não especificação completa</h2>
       <div class="content">
-        <div class="quote">Com tools, a IA <span>faz</span> muito.</div>
+        <ol class="steps"><li>Anexe a tela ou wireframe.</li><li>Explique o objetivo e o viewport.</li><li>Nomeie estados e interações invisíveis.</li><li>Peça comparação depois de implementar.</li></ol>
       </div>
-      <aside class="notes">
-        <p>Faça pausa nesse slide. Essa é a mensagem central da aula.</p>
-      </aside>
+      <aside class="notes"><p>Conecte ao bloco de design. Uma imagem não explica dados, acessibilidade nem comportamento.</p></aside>
     </section>
 
-    <section class="slide light">
-      <div class="kicker">Imagem exemplo</div>
-      <h2>Antes e depois das tools</h2>
-      <div class="content two-col">
-        <div class="image-slot">SEM TOOLS<br>Agente responde de cabeça e pode chutar</div>
-        <div class="image-slot">COM TOOLS<br>Agente pesquisa, lê, calcula e cria</div>
-      </div>
-      <aside class="notes">
-        <p>Substitua por um diagrama simples: cérebro isolado vs cérebro conectado a Google, arquivos, Python e imagem.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Bloco 1</div>
-      <h2>O que é uma<br><span class="accent-pink">tool?</span></h2>
-      <p class="subtitle">Tool é uma capacidade extra que você libera para o agente, e que ele decide usar quando faz sentido.</p>
-      <aside class="notes">
-        <p>Explique que ferramenta ligada não significa ferramenta usada. O agente avalia se precisa.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Analogia</div>
-      <h2>O estagiário inteligente</h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <h3>Sem ferramentas</h3>
-          <p>Trancado numa sala sem internet, sem celular e sem calculadora.</p>
-          <p class="mini">Responde de cabeça e às vezes chuta.</p>
-        </div>
-        <div class="card green">
-          <h3>Com ferramentas</h3>
-          <p>Com Google, calculadora, arquivos e editor de imagem.</p>
-          <p class="mini">Pesquisa, calcula, lê e entrega arte.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Essa analogia ajuda muito. Não use termos técnicos ainda.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Quem decide?</div>
-      <h2>O agente escolhe<br><span class="accent-yellow">quando usar</span></h2>
-      <div class="content two-col">
-        <div class="card green">
-          <h3>2 + 2?</h3>
-          <p>Provavelmente não precisa pesquisar nem rodar código.</p>
-        </div>
-        <div class="card pink">
-          <h3>Cotação do dólar agora?</h3>
-          <p>Precisa de busca ou fonte atual.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Reforce a sacada: mais tools não é automaticamente melhor. Ligue só o que faz sentido para o projeto.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">AI Studio</div>
-      <h2>Onde ligar as tools</h2>
-      <div class="content two-col">
-        <div class="image-slot">PRINT<br>Painel “Tools” no Google AI Studio</div>
-        <div class="card green">
-          <h3>Regra prática</h3>
-          <p>Ligue a tool quando ela ajuda a tarefa atual. Desligue quando só atrapalha ou deixa lento.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Substitua o placeholder por print do painel direito do AI Studio com a seção Tools.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Bloco 2</div>
-      <h2>🔎 Web Search<br><span class="accent-green">Grounding</span></h2>
-      <p class="subtitle">Quando ligado, a IA pesquisa no Google antes de responder, lê resultados e usa fontes atuais.</p>
-      <aside class="notes">
-        <p>Diga o nome do toggle: “Grounding with Google Search”.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Quando ligar</div>
-      <h2>Web Search serve para hoje</h2>
-      <div class="content two-col">
-        <ul class="big-list">
-          <li>Fatos atuais.</li>
-          <li>Preços e cotações.</li>
-          <li>Notícias e mercado.</li>
-        </ul>
-        <ul class="big-list">
-          <li>Docs atualizadas.</li>
-          <li>Bibliotecas recentes.</li>
-          <li>Verificar pacote real.</li>
-        </ul>
-      </div>
-      <aside class="notes">
-        <p>Lembre o alerta da Aula 1: a IA inventa nome de pacote. Web Search ajuda a verificar se existe.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Quando NÃO ligar</div>
-      <h2>Busca também distrai</h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <h3>Evite quando</h3>
-          <ul>
-            <li>Você quer só código limpo.</li>
-            <li>O assunto é genérico.</li>
-            <li>Você não precisa de fonte atual.</li>
-          </ul>
-        </div>
-        <div class="card yellow">
-          <h3>Por quê?</h3>
-          <p>A resposta pode ficar mais lenta, verbosa e cheia de citações desnecessárias.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Esse slide evita a ideia de “deixar tudo ligado sempre”.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Demo ao vivo</div>
-      <h2>Sem grounding vs com grounding</h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <span class="label accent-pink">Sem grounding</span>
-          <div class="code">Qual o último modelo Gemini lançado em 2026?</div>
-          <p class="mini">Resposta pode vir vaga ou desatualizada.</p>
-        </div>
-        <div class="card green">
-          <span class="label accent-green">Com grounding</span>
-          <div class="code">Mesma pergunta, agora com busca ligada.</div>
-          <p class="mini">Resposta atual, com fontes.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Essa demo é rápida e gera “uau”. Se a pergunta ficar desatualizada no futuro, troque por outra pergunta atual do dia.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Hackathon</div>
-      <h2>Casos de uso<br><span class="accent-yellow">com busca</span></h2>
+    <section class="slide light demo">
+      <div class="kicker">Demo guiada</div>
+      <h2>Uma feature, três evidências</h2>
       <div class="content">
-        <div class="code">Pesquise as 5 maiores cafeterias artesanais de SP e devolva nome, bairro e site.
-
-Confirme se a API do Mercado Pago aceita PIX em sandbox grátis.
-
-Liste as principais bibliotecas JavaScript de mapas usadas atualmente.</div>
+        <div class="demo-box"><ol class="steps"><li>Ler <strong>spec.md</strong> e <strong>design.md</strong>.</li><li>Inspecionar wireframe, style guide e contrato de componente.</li><li>Implementar o filtro, variantes e estados previstos.</li><li>Executar o roteiro de teste e revisar o screenshot.</li></ol></div>
       </div>
-      <aside class="notes">
-        <p>Mostre que busca serve tanto para produto/mercado quanto para decisão técnica.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Equivalentes</div>
-      <h2>O mesmo poder em outras ferramentas</h2>
-      <div class="content three-col">
-        <div class="card green"><h3>Gemini CLI</h3><p>google_web_search.</p></div>
-        <div class="card pink"><h3>Claude</h3><p>Web Search no chat ou Code.</p></div>
-        <div class="card yellow"><h3>ChatGPT</h3><p>Search / browse integrado.</p></div>
-      </div>
-      <aside class="notes">
-        <p>Não precisa detalhar. Só mostre que o conceito é portátil.</p>
-      </aside>
+      <aside class="notes"><p>Faça uma única demo integrada, em vez de quatro demos desconectadas. Use estado pré-preparado para reduzir risco.</p></aside>
     </section>
 
     <section class="slide dark">
-      <div class="kicker">Bloco 3</div>
-      <h2>📄 File Reading<br><span class="accent-pink">IA que entende arquivos</span></h2>
-      <p class="subtitle">Anexe um arquivo no chat e peça para a IA ler, resumir, extrair, comparar ou transformar.</p>
-      <aside class="notes">
-        <p>Mostre o ícone de clipe no AI Studio, se possível.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Tipos suportados</div>
-      <h2>Não é só PDF</h2>
+      <div class="kicker">Quando desligar</div>
+      <h2>Mais ferramentas também geram mais ruído</h2>
       <div class="content three-col">
-        <div class="card green"><h3>PDF</h3><p>Regulamento, edital, artigo, documento.</p></div>
-        <div class="card pink"><h3>Imagem</h3><p>Print, foto, wireframe, texto em imagem.</p></div>
-        <div class="card yellow"><h3>Vídeo/Áudio</h3><p>Cenas, falas, transcrição, resumo.</p></div>
-        <div class="card green"><h3>Planilha</h3><p>CSV, tabela, dados de usuários.</p></div>
-        <div class="card pink"><h3>Código</h3><p>Refatoração, explicação e code review.</p></div>
-        <div class="card yellow"><h3>Texto</h3><p>Contrato, roteiro, briefing, spec.</p></div>
+        <article class="card pink"><h3>Custo</h3><p>Mais tempo e contexto consumido.</p></article>
+        <article class="card yellow"><h3>Risco</h3><p>Mais dados e permissões envolvidos.</p></article>
+        <article class="card green"><h3>Foco</h3><p>Use só o necessário para a tarefa atual.</p></article>
       </div>
-      <aside class="notes">
-        <p>Dê exemplos de arquivos reais de hackathon: regulamento, dados, desenho do mentor, planilha de pesquisa.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Vantagem do Gemini</div>
-      <h2>Janela enorme<br><span class="accent-green">de contexto</span></h2>
-      <div class="content two-col">
-        <div class="card yellow">
-          <h3>1M tokens</h3>
-          <p>Cabe muita coisa: PDF grande, várias páginas de código ou vídeo longo.</p>
-        </div>
-        <div class="card green">
-          <h3>Por que importa?</h3>
-          <p>A IA consegue responder olhando o material inteiro, não só um recorte pequeno.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Não transforme em benchmark. O ponto é prático: dá para anexar material grande sem quebrar o fluxo.</p>
-      </aside>
+      <aside class="notes"><p>“Ligue tudo” não é estratégia. Permissão mínima também vale para agentes.</p></aside>
     </section>
 
     <section class="slide light">
-      <div class="kicker">Hackathon</div>
-      <h2>Casos de uso com arquivos</h2>
+      <div class="kicker">Segurança</div>
+      <h2>Antes de compartilhar contexto</h2>
       <div class="content">
-        <div class="code">Lê esse PDF do regulamento e me diz se posso usar IA generativa pra arte.
-
-Olha essa foto do meu desenho a lápis e converte para HTML + Tailwind.
-
-Transcreve esse áudio do mentor e resume os 3 pontos principais.
-
-Agrupa essa planilha de 200 clientes por região e mostra os top 10.</div>
+        <ul class="check-list"><li>Remova chaves, tokens, senhas e dados pessoais.</li><li>Use dados fictícios em demos e planilhas.</li><li>Confirme o destino e a finalidade do arquivo.</li><li>Evite expor localização ou identidade de pessoas vulneráveis.</li><li>Revogue credenciais que apareceram por engano.</li></ul>
       </div>
-      <aside class="notes">
-        <p>Esse slide é para repertório. Mostre que arquivo vira contexto — e contexto bom vira output bom.</p>
-      </aside>
+      <aside class="notes"><p>Este slide é obrigatório para um hackathon que pode gerar produtos comunitários com dados sensíveis.</p></aside>
     </section>
 
-    <section class="slide dark">
-      <div class="kicker">Demo ao vivo</div>
-      <h2>Imagem → nomes de projeto</h2>
-      <div class="content two-col">
-        <div class="image-slot">ANEXAR FOTO<br>Foto de produto, desenho, cenário ou protótipo</div>
-        <div class="code">Descreva essa imagem e sugira 3 nomes para esse projeto baseado no que você vê.</div>
+    <section class="slide dark activity">
+      <div class="kicker">Prática • Evidência antes da ferramenta</div>
+      <h2>O que precisamos descobrir?</h2>
+      <div class="content two-col align-start">
+        <div class="activity-box"><span class="time-badge">6 minutos</span><ol class="steps"><li>Escolha uma incerteza da Folha.</li><li>Defina qual evidência reduziria a dúvida.</li><li>Escolha busca, arquivo, execução, visão ou nenhuma tool.</li><li>Diga como saberá que a dúvida foi resolvida.</li></ol></div>
+        <article class="card green"><h3>Registre • Etapa 4</h3><p>Precisamos descobrir… A evidência seria… Vamos obtê-la usando… Saberemos que resolveu quando…</p></article>
       </div>
-      <aside class="notes">
-        <p>Demo simples e segura. Use qualquer foto com elementos visuais claros.</p>
-      </aside>
+      <aside class="notes"><p>Não aceite “usar IA” como resposta. A equipe precisa nomear a incerteza e a evidência antes da ferramenta.</p></aside>
     </section>
 
     <section class="slide light">
-      <div class="kicker">Truque de ouro</div>
-      <h2>Imagem → código</h2>
-      <div class="content two-col">
-        <div class="image-slot">WIRE-frame<br>Print do Figma ou desenho à mão</div>
-        <div class="card green">
-          <h3>Prompt</h3>
-          <div class="code">Implemente essa tela em HTML + Tailwind, mobile-first.</div>
-        </div>
+      <div class="kicker">Panorama opcional</div>
+      <h2>MCP e skills vêm depois do problema</h2>
+      <div class="content compare">
+        <article class="card blue"><h3>MCP</h3><p>Padrão para conectar agentes a serviços e dados externos.</p></article>
+        <article class="card pink"><h3>Skills</h3><p>Instruções, scripts e recursos empacotados para uma tarefa.</p></article>
       </div>
-      <aside class="notes">
-        <p>Esse é um dos atalhos de maior ROI para hackathon. Uma foto de wireframe pode virar primeira versão de tela.</p>
-      </aside>
+      <aside class="notes"><p>Não demonstre. Deixe como repertório para quem quiser aprofundar depois do hackathon.</p></aside>
     </section>
 
-    <section class="slide dark">
-      <div class="kicker">Bloco 4</div>
-      <h2>🐍 Code Execution<br><span class="accent-yellow">IA que calcula</span></h2>
-      <p class="subtitle">Quando ligado, a IA pode escrever e rodar Python em um sandbox para checar resultados antes de responder.</p>
-      <aside class="notes">
-        <p>Explique que LLM é ruim de conta, mas ótima em escrever código para calcular.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Problema enorme</div>
-      <h2>LLM erra conta</h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <h3>Sem execução</h3>
-          <p>Ela tenta calcular de cabeça e pode errar a casa decimal.</p>
-        </div>
-        <div class="card green">
-          <h3>Com execução</h3>
-          <div class="code">print(0.18 * 7842)
-# 1411.56</div>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Faça a demonstração com 18% de 7.842. É simples e didático.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Quando ligar</div>
-      <h2>Code Execution serve para dados</h2>
-      <div class="content two-col">
-        <ul class="big-list">
-          <li>Conta e porcentagem.</li>
-          <li>Média, mediana, top N.</li>
-          <li>Gráficos.</li>
-        </ul>
-        <ul class="big-list">
-          <li>Validar JSON.</li>
-          <li>Testar regex.</li>
-          <li>Combinar CSVs.</li>
-        </ul>
-      </div>
-      <aside class="notes">
-        <p>Mostre que não é só matemática escolar. É análise de dados e validação prática.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Hackathon</div>
-      <h2>Casos de uso com Python</h2>
+    <section class="slide dark recap">
+      <div class="kicker">Recap</div>
+      <h2>Tool certa reduz uma incerteza específica</h2>
       <div class="content">
-        <div class="code">Pega essa planilha de votos e devolve um gráfico de pizza dos 3 mais votados.
-
-Gera 1.000 nomes fictícios brasileiros para popular meu app de demo.
-
-Calcula o ROI dessa simulação para cada cenário e monta uma tabela.</div>
+        <ul class="big-list"><li>Atualidade pede fonte.</li><li>Projeto pede arquivo.</li><li>Funcionamento pede execução.</li><li>Visual pede comparação.</li></ul>
+        <a class="pill" href="../ferramentas-ecossistema/index.html">Próxima: publicar e operar →</a>
       </div>
-      <aside class="notes">
-        <p>Se tiver tempo, use uma lista pequena e peça média ou gráfico. É uma demo segura.</p>
-      </aside>
+      <aside class="notes"><p>Peça para uma equipe dizer qual tool escolheu e por quê.</p></aside>
     </section>
-
-    <section class="slide dark">
-      <div class="kicker">Limitação honesta</div>
-      <h2>Sandbox não tem<br><span class="accent-pink">internet</span></h2>
-      <div class="content two-col">
-        <div class="card yellow">
-          <h3>Ótimo para</h3>
-          <p>Dados que você forneceu: CSV, números, JSON, texto, arquivos.</p>
-        </div>
-        <div class="card pink">
-          <h3>Ruim para</h3>
-          <p>“Baixe esse CSV de uma URL e analise”. Para isso, combine com busca ou forneça o arquivo.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Limitação honesta aumenta confiança. Ferramenta certa para problema certo.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Demo ao vivo</div>
-      <h2>Conta sem e com execução</h2>
-      <div class="content two-col">
-        <div class="card pink"><span class="label accent-pink">Sem execução</span><p>Média de uma lista grande pode sair errada.</p></div>
-        <div class="card green"><span class="label accent-green">Com execução</span><p>A IA roda Python, confere o resultado e responde certo.</p></div>
-      </div>
-      <aside class="notes">
-        <p>Use lista de 20-30 números. O valor exato não importa; importa ver que ela rodou código.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Bloco 5</div>
-      <h2>🎨 Image Generation<br><span class="accent-green">IA que cria mídia</span></h2>
-      <p class="subtitle">Troque para um modelo de imagem no AI Studio e gere logos, heros, mockups e ícones em minutos.</p>
-      <aside class="notes">
-        <p>Explique que, para gerar imagem, geralmente troca o modelo no seletor do topo.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Modelos de imagem</div>
-      <h2>O que usar no AI Studio</h2>
-      <div class="content two-col">
-        <div class="card green">
-          <h3>Imagen</h3>
-          <p>Geração fotorrealista ou ilustrativa a partir de texto.</p>
-        </div>
-        <div class="card pink">
-          <h3>Gemini Flash Image</h3>
-          <p>Gera e edita imagens por prompt conversacional.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Evite prometer nomes fixos de modelos para sempre. O seletor de modelo muda; o conceito é escolher um modelo de imagem.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Hackathon</div>
-      <h2>Casos de uso visual</h2>
-      <div class="content two-col">
-        <ul class="big-list">
-          <li>Logo provisório.</li>
-          <li>Hero da landing.</li>
-          <li>Ícones de feature.</li>
-        </ul>
-        <ul class="big-list">
-          <li>Mockup de tela.</li>
-          <li>Wireframe estilo Figma.</li>
-          <li>Edição de fundo.</li>
-        </ul>
-      </div>
-      <aside class="notes">
-        <p>Explique: com designer, use para protótipo rápido; sem designer, use como ponto de partida visual.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Prompt exemplo</div>
-      <h2>Logo em 90 segundos</h2>
-      <div class="content two-col">
-        <div class="code">Crie 3 versões de logo minimalista para uma cafeteria chamada “GrãoBravo”.
-
-Estilo: moderno, premium, amigável.
-Cores: marrom, creme e verde.
-Uso: landing page de hackathon.</div>
-        <div class="image-slot">RESULTADOS<br>Coloque aqui as 3 opções geradas</div>
-      </div>
-      <aside class="notes">
-        <p>Faça a demo com app fictício. Pegue a melhor opção e explique que logo final ainda precisa refinamento.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Limitações honestas</div>
-      <h2>Imagem ajuda,<br><span class="accent-pink">mas não é magia</span></h2>
-      <div class="content three-col">
-        <div class="card pink"><h3>Texto</h3><p>Palavras dentro da imagem ainda podem sair quebradas.</p></div>
-        <div class="card yellow"><h3>Tentativas</h3><p>Estilos específicos podem precisar de várias rodadas.</p></div>
-        <div class="card green"><h3>Logo final</h3><p>Serve como base visual, não necessariamente entrega final.</p></div>
-      </div>
-      <aside class="notes">
-        <p>Fale com honestidade para evitar expectativa errada. É prototipagem rápida.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Imagem exemplo</div>
-      <h2>Galeria do MVP</h2>
-      <div class="content three-col">
-        <div class="image-slot">LOGO<br>Marca provisória</div>
-        <div class="image-slot">HERO<br>Imagem da landing</div>
-        <div class="image-slot">ÍCONES<br>Features do app</div>
-      </div>
-      <aside class="notes">
-        <p>Substitua pelos outputs da demo, se fizer ao vivo. Esse slide fica ótimo como vitrine.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Bloco 6</div>
-      <h2>🚀 Para ir além<br><span class="accent-yellow">MCP, Skills e apps</span></h2>
-      <p class="subtitle">Panorama rápido: vocês não precisam disso para o hackathon, mas vale saber que existe.</p>
-      <aside class="notes">
-        <p>Avise que é panorama. Não tente instalar nem demonstrar ao vivo.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">MCP</div>
-      <h2>USB-C da IA</h2>
-      <div class="content two-col">
-        <div class="card green">
-          <h3>O que é?</h3>
-          <p>Um padrão para conectar agentes a serviços externos usando o mesmo encaixe.</p>
-        </div>
-        <div class="image-slot">DIAGRAMA<br>Agente → MCP → Gmail, GitHub, Postgres, Slack, Navegador</div>
-      </div>
-      <aside class="notes">
-        <p>Analogia: antes cada integração era um cabo diferente; MCP tenta padronizar o encaixe.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">O que dá para fazer</div>
-      <h2>Agente mexendo<br><span class="accent-green">em serviços</span></h2>
-      <div class="content two-col">
-        <ul class="big-list">
-          <li>Ler e responder Gmail.</li>
-          <li>Abrir PRs no GitHub.</li>
-          <li>Consultar Postgres.</li>
-        </ul>
-        <ul class="big-list">
-          <li>Controlar navegador.</li>
-          <li>Conversar com Slack.</li>
-          <li>Atualizar Notion/Linear.</li>
-        </ul>
-      </div>
-      <aside class="notes">
-        <p>Reforce: para hackathon, provavelmente overkill. Mas se o projeto é “agente que faz coisas em app X”, MCP é caminho.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Skills</div>
-      <h2>Habilidades empacotadas</h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <h3>O que é?</h3>
-          <p>Uma pasta com instruções, scripts, exemplos e assets para ensinar uma habilidade específica ao agente.</p>
-        </div>
-        <div class="code">skill/
-├── SKILL.md
-├── scripts/
-├── examples/
-└── assets/</div>
-      </div>
-      <aside class="notes">
-        <p>Explique que o agente descobre a skill quando ela é relevante e segue as instruções dela.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Exemplos de Skills</div>
-      <h2>Relatórios e arquivos</h2>
-      <div class="content four-docs">
-        <div class="card green"><h3>PDF</h3><p>Criar, mesclar, extrair e manipular PDFs.</p></div>
-        <div class="card pink"><h3>XLSX</h3><p>Ler e gerar planilhas Excel complexas.</p></div>
-        <div class="card yellow"><h3>DOCX</h3><p>Gerar documentos Word formatados.</p></div>
-        <div class="card green"><h3>PPTX</h3><p>Criar apresentações estruturadas.</p></div>
-      </div>
-      <aside class="notes">
-        <p>Conecte com hackathon: se o projeto gera relatório em PDF/Excel/Word, skills podem acelerar muito.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Computer Use</div>
-      <h2>Agente controlando o computador</h2>
-      <div class="content two-col">
-        <div class="card yellow">
-          <h3>Exemplos</h3>
-          <ul>
-            <li>Claude Computer Use.</li>
-            <li>Browser Use.</li>
-            <li>Operator.</li>
-          </ul>
-        </div>
-        <div class="card pink">
-          <h3>Alerta</h3>
-          <p>É ótimo para demo, mas ainda pode ser instável para produção.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Não faça demo ao vivo. Pode travar e queimar credibilidade. Mantenha como panorama.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Bloco 7</div>
-      <h2>Matriz de decisão</h2>
-      <div class="content">
-        <table class="table">
-          <thead><tr><th>Preciso...</th><th>Tool</th></tr></thead>
-          <tbody>
-            <tr><td>Pesquisar fatos atuais</td><td>🔎 Grounding</td></tr>
-            <tr><td>Ler PDF, imagem, vídeo ou CSV</td><td>📄 Anexar arquivo</td></tr>
-            <tr><td>Fazer cálculo, gráfico ou dados</td><td>🐍 Code Execution</td></tr>
-            <tr><td>Criar logo, hero, ícone ou mockup</td><td>🎨 Image Generation</td></tr>
-            <tr><td>Conectar Gmail, GitHub ou DB</td><td>🚀 MCP</td></tr>
-            <tr><td>Gerar PDF, Excel, Word ou PPT</td><td>🚀 Skills</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <aside class="notes">
-        <p>Esse é o slide de maior utilidade prática. Pode virar colinha do hackathon.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Checklist</div>
-      <h2>Antes de prompar</h2>
-      <div class="content two-col">
-        <div class="card green">
-          <ul>
-            <li>Envolve mundo real atual? Ligue Grounding.</li>
-            <li>Tenho arquivo útil? Anexe.</li>
-            <li>Tem conta ou dados? Ligue Code Execution.</li>
-          </ul>
-        </div>
-        <div class="card pink">
-          <ul>
-            <li>Preciso de visual? Use modelo de imagem.</li>
-            <li>Não preciso de nada disso? Desligue tudo.</li>
-            <li>Tool certa, prompt certo, spec certa.</li>
-          </ul>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Reforce: desligar tools quando não precisa deixa o fluxo mais rápido e direto.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Ligação com as aulas</div>
-      <h2><span class="accent-green">Falar</span><br><span class="accent-pink">Planejar</span><br><span class="accent-yellow">Dar poderes</span></h2>
-      <div class="content three-col">
-        <div class="card green"><h3>Aula 1</h3><p>Prompt Engineering: falar bem com a IA.</p></div>
-        <div class="card pink"><h3>Aula 2</h3><p>SDD: planejar e criar memória.</p></div>
-        <div class="card yellow"><h3>Aula 3</h3><p>Tools: dar superpoderes ao agente.</p></div>
-      </div>
-      <aside class="notes">
-        <p>Feche a narrativa das três aulas. Agora eles têm repertório suficiente para construir no hackathon.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Anexos</div>
-      <h2>Demos sugeridas</h2>
-      <div class="content two-col">
-        <div class="card green">
-          <ol>
-            <li>Mesmo prompt sem e com Grounding.</li>
-            <li>Foto desenhada à mão → HTML pronto.</li>
-            <li>Conta errada sem execução / certa com execução.</li>
-          </ol>
-        </div>
-        <div class="card pink">
-          <ol start="4">
-            <li>Gerar 3 logos em 90 segundos.</li>
-            <li>PDF grande anexado + pergunta específica.</li>
-          </ol>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Escolha 3 ou 4 demos. Não tente demonstrar MCP, Skills ou Computer Use ao vivo.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Se sobrar tempo</div>
-      <h2>Desafio de 60 segundos</h2>
-      <div class="content two-col">
-        <div class="card yellow">
-          <h3>Em dupla</h3>
-          <p>Escolham uma feature do projeto de vocês.</p>
-        </div>
-        <div class="card green">
-          <h3>Respondam</h3>
-          <p>Qual combinação de tools vocês ligariam para construir essa feature?</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Cada dupla compartilha em 30 segundos. Isso faz o conceito grudar.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Recursos</div>
-      <h2>Para aprofundar</h2>
-      <div class="content two-col">
-        <ul>
-          <li>AI Studio — painel Tools</li>
-          <li>Gemini API — Tools</li>
-          <li>Model Context Protocol</li>
-        </ul>
-        <ul>
-          <li>Anthropic Skills</li>
-          <li>Browser Use</li>
-          <li>Documentação das ferramentas do agente usado</li>
-        </ul>
-      </div>
-      <aside class="notes">
-        <p>Não precisa abrir links na aula. São recursos para depois.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Fechamento</div>
-      <h2><span class="accent-green">Tool certa</span><br><span class="accent-pink">na hora certa</span></h2>
-      <p class="subtitle">Prompt bom + spec clara + ferramentas certas = agente que realmente ajuda a construir.</p>
-      <div class="content"><span class="stamp">Q&A</span></div>
-      <aside class="notes">
-        <p>Feche com Q&A. Se a turma estiver animada, faça o desafio de tools por feature.</p>
-      </aside>
-    </section>
-
   </main>
 
-  <div class="progress" id="progress"></div>
-
-  <div class="controls">
-    <a class="deck-link" href="../../index.html">Início</a>
-
-    <button id="prevBtn" aria-label="Slide anterior">←</button>
-    <button id="notesBtn" aria-label="Mostrar notas">Notas</button>
-    <button id="nextBtn" aria-label="Próximo slide">→</button>
-
-    <a class="deck-link" href="../ferramentas-ecossistema/">Próxima aula →</a>
-  </div>
-
-  <aside class="notes-panel" id="notesPanel" aria-live="polite">
-    <button class="close" id="closeNotes">Fechar</button>
-    <h4>Notas do apresentador</h4>
-    <div id="notesContent"></div>
-  </aside>
+  <div class="progress" id="progress" role="progressbar" aria-label="Progresso da aula"></div>
+  <a class="deck-link" href="../../index.html">Início</a><div class="scroll-status" id="scrollStatus" aria-live="polite"></div>
+  <nav class="controls" aria-label="Controles dos slides"><button id="prevBtn" aria-label="Slide anterior">←</button><button id="notesBtn" aria-label="Mostrar notas">Notas</button><button id="nextBtn" aria-label="Próximo slide">→</button></nav>
+  <aside class="notes-panel" id="notesPanel" aria-live="polite"><button class="close" id="closeNotes">Fechar</button><h4>Notas</h4><div id="notesContent"></div></aside>
 </body>
 </html>
