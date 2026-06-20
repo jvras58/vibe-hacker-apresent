@@ -3,930 +3,227 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aula 2: Spec-Driven Development para Vibe Coders</title>
+  <title>Aula 2 — Spec: memória do projeto</title>
   <link rel="stylesheet" href="../../styles.css" />
   <script src="../../script.js" defer></script>
 </head>
 <body>
-  <main class="deck" id="deck">
-
-    <section class="slide dark active">
-      <div class="kicker">Aula 2 • Bootcamp Hackathon • 60 min</div>
-      <h1><span class="accent-green">Spec-Driven</span><br><span class="accent-pink">Development</span><br><span class="accent-yellow">para Vibe Coders</span></h1>
-      <p class="subtitle">Como criar uma memória de projeto para a IA seguir passo a passo — sem inventar, sem se perder e sem quebrar o MVP no segundo dia.</p>
-      <div class="footer-hint">Use ← → para navegar • clique em “Notas” para o roteiro do apresentador</div>
-      <aside class="notes">
-        <p>Abra conectando com a Aula 1: “Na aula passada vocês aprenderam bons prompts. Hoje vocês vão aprender a fazer isso em escala.”</p>
-      </aside>
+  <main class="deck">
+    <section class="slide dark active cover">
+      <div class="kicker">Aula 2 • 60 min • Spec-Driven Development</div>
+      <h1><span class="accent-green">Memória</span><br><span class="accent-pink">para o</span><br><span class="accent-yellow">projeto</span></h1>
+      <p class="subtitle">Como manter pessoas e agentes alinhados quando o chat cresce, a ideia muda e o hackathon acelera.</p>
+      <div class="project-strip"><strong>Projeto-guia:</strong> Viva+ Recife • da direção escolhida à implementação</div>
+      <aside class="notes"><p>Retome o prompt salvo na aula anterior. Explique que a spec não substitui conversa: ela preserva decisões.</p></aside>
     </section>
 
-    <section class="slide light">
-      <div class="kicker">Mapa da aula</div>
-      <h2>Estrutura geral</h2>
-      <div class="timeline">
-        <div class="step"><b>0</b>5 min<br>Abertura</div>
-        <div class="step"><b>1</b>8 min<br>O que é spec</div>
-        <div class="step"><b>2</b>12 min<br>4 documentos</div>
-        <div class="step"><b>3</b>10 min<br>Fluxo SDD</div>
-        <div class="step"><b>4</b>14 min<br>Ferramentas</div>
-        <div class="step"><b>5</b>7 min<br>Maturidade</div>
-        <div class="step"><b>6</b>5 min<br>Checklist</div>
-        <div class="step"><b>?</b>Q&A<br>Perguntas</div>
-      </div>
-      <aside class="notes">
-        <p>Mostre que a aula é prática. O foco não é teoria de engenharia de software: é evitar que o agente de IA se perca no hackathon.</p>
-      </aside>
+    <section class="slide light section-break">
+      <div class="kicker">Problema</div>
+      <h2>O chat lembra menos que o projeto precisa</h2>
+      <p class="subtitle">Decisões antigas somem, nomes mudam e cada nova feature pode contradizer a anterior.</p>
+      <aside class="notes"><p>Peça um exemplo real de uma conversa em que a IA esqueceu uma decisão.</p></aside>
     </section>
 
     <section class="slide dark">
-      <div class="kicker">Bloco 0</div>
-      <h2><span class="accent-green">Prompt bom</span><br><span class="accent-pink">não escala sozinho</span></h2>
-      <div class="content two-col">
-        <div class="card green">
-          <h3>Aula 1</h3>
-          <p>Prompt = conversa única com a IA.</p>
-          <p class="mini">Papel + Tarefa + Contexto + Formato + Exemplos.</p>
-        </div>
-        <div class="card pink">
-          <h3>Aula 2</h3>
-          <p>Spec = memória do projeto.</p>
-          <p class="mini">A IA consulta documentos antes de gerar código.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Reforce: prompt engineering continua valendo. SDD não substitui prompt; organiza o contexto para vários prompts ao longo do projeto.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">O problema do hackathon</div>
-      <h2>Cada prompt vira uma ilha</h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <h3>Sábado, 14h</h3>
-          <p>Você pediu login às 10h, dashboard às 12h e relatórios às 14h.</p>
-        </div>
-        <div class="card yellow">
-          <h3>A IA esqueceu</h3>
-          <p>Troca email por usuário, inventa banco diferente e quebra o que já funcionava.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Conte como história. A turma provavelmente já viu isso acontecer: a IA resolve a tarefa atual e ignora decisões anteriores.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Virada de chave</div>
-      <h2><span class="accent-yellow">A spec lembra</span></h2>
+      <div class="kicker">Virada</div>
+      <h2>Contexto importante vive fora do chat</h2>
       <div class="content">
-        <div class="quote">“O código mente, o chat esquece. <span>A spec lembra.</span>”</div>
-        <div class="flow">
-          <span>Regras</span><span class="arrow">→</span><span>Feature</span><span class="arrow">→</span><span>Plano</span><span class="arrow">→</span><span>Tarefas</span><span class="arrow">→</span><span>Código</span>
-        </div>
+        <div class="flow"><span>problema</span><b>→</b><span>spec</span><b>→</b><span>design</span><b>→</b><span>tarefas</span><b>→</b><span>código</span></div>
+        <div class="callout">A conversa passa. A fonte de verdade permanece.</div>
       </div>
-      <aside class="notes">
-        <p>Essa é a frase para fixar. Faça a turma repetir. É o centro da aula.</p>
-      </aside>
+      <aside class="notes"><p>Use “fonte de verdade” como conceito principal. Não comece por ferramentas ou comandos.</p></aside>
     </section>
 
     <section class="slide light">
-      <div class="kicker">Imagem exemplo</div>
-      <h2>Prompt isolado vs spec</h2>
-      <div class="content two-col">
-        <div class="image-slot">SEM SPEC<br>Agente escolhe biblioteca, estilo e lugar aleatórios</div>
-        <div class="image-slot">COM SPEC<br>Agente segue stack, UX e decisões do projeto</div>
-      </div>
-      <aside class="notes">
-        <p>Use aqui prints de uma mesma feature gerada sem spec e depois com spec. Exemplo: botão de exportar PDF.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Bloco 1</div>
-      <h2>O que é uma<br><span class="accent-pink">spec?</span></h2>
-      <p class="subtitle">Documento curto em Markdown que descreve o que o software faz, por quê, e com quais restrições — antes de uma linha de código existir.</p>
-      <aside class="notes">
-        <p>Evite explicar como documentação formal pesada. A spec aqui é curta, prática e feita para o agente de IA usar.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Analogia simples</div>
-      <h2>A reforma da casa</h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <span class="label accent-pink">Vibe coding puro</span>
-          <p>Você manda mensagem pro pedreiro toda hora: “põe tomada ali”, “pinta de azul”, “mudei de ideia”.</p>
-          <p class="mini">Resultado: Frankenstein.</p>
-        </div>
-        <div class="card green">
-          <span class="label accent-green">Spec-driven</span>
-          <p>Você faz a planta, define cores, materiais e prazo. O pedreiro executa a planta.</p>
-          <p class="mini">A spec é a planta da casa.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Essa analogia funciona bem com público não técnico. Deixe claro: mudança pode acontecer, mas passa pela planta antes de virar parede.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Visão geral</div>
-      <h2>O que a spec contém?</h2>
-      <div class="content two-col">
-        <ol class="big-list">
-          <li>As leis do projeto.</li>
-          <li>O que construir.</li>
-        </ol>
-        <ol class="big-list" start="3">
-          <li>Como construir.</li>
-          <li>Passos executáveis.</li>
-        </ol>
-      </div>
-      <aside class="notes">
-        <p>Prepare o Bloco 2. Diga que esses quatro itens viram quatro documentos.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Insight</div>
-      <h2>Manual do funcionário</h2>
-      <div class="content two-col">
-        <div class="card yellow">
-          <h3>Prompt engineering</h3>
-          <p>É como conversar bem com a IA.</p>
-        </div>
-        <div class="card green">
-          <h3>SDD</h3>
-          <p>É como dar um manual do funcionário para ela consultar sempre.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Ligue com contexto: a IA só sabe o que está no contexto. SDD coloca o contexto em arquivos curtos e reutilizáveis.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Bloco 2</div>
-      <h2>Os 4 documentos<br><span class="accent-yellow">do SDD</span></h2>
-      <div class="content four-docs">
-        <div class="card green"><div class="metric">1</div><h3>constitution.md</h3><p>Leis do projeto.</p></div>
-        <div class="card pink"><div class="metric">2</div><h3>spec.md</h3><p>O que construir.</p></div>
-        <div class="card yellow"><div class="metric">3</div><h3>plan.md</h3><p>Como construir.</p></div>
-        <div class="card green"><div class="metric">4</div><h3>tasks.md</h3><p>Passos executáveis.</p></div>
-      </div>
-      <aside class="notes">
-        <p>Se o CSS tiver só three-col, four-docs continua funcionando como grid básico se você adicionar depois. Se não, fica legível pelo conteúdo.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">2.1 constitution.md</div>
-      <h2>A lei fundamental</h2>
-      <div class="content two-col">
-        <div class="card green">
-          <h3>O que é?</h3>
-          <p>Regras que valem para o projeto inteiro, do começo ao fim.</p>
-        </div>
-        <div class="card pink">
-          <h3>O que entra?</h3>
-          <ul>
-            <li>Stack obrigatória.</li>
-            <li>Convenções de código.</li>
-            <li>Padrões de UX.</li>
-            <li>O que é proibido.</li>
-          </ul>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Diga: se a IA toma uma decisão que viola a constitution, isso é bug. Você corrige citando o arquivo.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Exemplo</div>
-      <h2>constitution.md de hackathon</h2>
-      <div class="content">
-        <div class="code"># Constituição do Projeto: GrãoBravo
-
-## Stack
-- Frontend: HTML + Tailwind CSS + JavaScript vanilla
-- Backend: nenhum
-- Persistência: localStorage
-
-## Princípios
-- Mobile-first: testar em 360px antes de tudo.
-- Tempo de carregamento &lt; 2s.
-- Sem dependências pagas.
-- Sem login. Tudo público.
-
-## Voz da marca
-- Tom amigável, descontraído, sem termos técnicos.
-- Português brasileiro.
-- Emojis com moderação.</div>
-      </div>
-      <aside class="notes">
-        <p>Explique que a constitution não precisa ser longa. Cinco a quinze linhas já mudam muito o comportamento do agente.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">2.2 spec.md</div>
-      <h2>O que construir</h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <h3>Ponto de vista</h3>
-          <p>Feature descrita do ponto de vista do usuário, sem código e sem detalhe técnico.</p>
-        </div>
-        <div class="card green">
-          <h3>Conteúdo</h3>
-          <ul>
-            <li>Quem é o usuário.</li>
-            <li>Comportamento esperado.</li>
-            <li>Critérios de aceitação.</li>
-            <li>Casos extremos.</li>
-          </ul>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Reforce “sem código”. Se a spec já começa com biblioteca e implementação, ela pulou uma etapa.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Exemplo</div>
-      <h2>spec.md: carrinho</h2>
-      <div class="content two-col">
-        <div class="code"># Feature: Carrinho de Compras
-
-## Usuário
-Cliente navegando os produtos da cafeteria.
-
-## Comportamento
-1. Cada card tem botão "+ Carrinho".
-2. O badge no header incrementa.
-3. O ícone abre painel lateral.
-4. O usuário altera quantidade ou remove.
-5. O total recalcula em tempo real.</div>
-        <div class="code">## Critérios de aceitação
-- [ ] Sobrevive a refresh da página.
-- [ ] Total em formato BRL.
-- [ ] Carrinho vazio mostra mensagem.
-
-## Fora de escopo
-- Cupons de desconto.
-- Frete.
-- Pagamento.</div>
-      </div>
-      <aside class="notes">
-        <p>Chame atenção para “Fora de escopo”. Sem isso, a IA ajuda demais e implementa coisas não pedidas.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Detalhe importante</div>
-      <h2>Fora de escopo também é spec</h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <h3>Sem limite</h3>
-          <p>A IA “ajuda demais”: adiciona cupom, pagamento, frete, login e quebra o prazo.</p>
-        </div>
-        <div class="card green">
-          <h3>Com limite</h3>
-          <p>A IA sabe exatamente o que NÃO deve fazer agora.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Essa é uma das maiores vantagens práticas para hackathon: limitar escopo salva tempo.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">2.3 plan.md</div>
-      <h2>Como construir</h2>
-      <div class="content two-col">
-        <div class="card yellow">
-          <h3>Quem cria?</h3>
-          <p>Geralmente a própria IA, baseada na constitution + spec. Você revisa.</p>
-        </div>
-        <div class="card green">
-          <h3>O que entra?</h3>
-          <ul>
-            <li>Arquivos.</li>
-            <li>Estrutura de dados.</li>
-            <li>Bibliotecas.</li>
-            <li>Fluxo técnico.</li>
-          </ul>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Mostre que plan é a ponte entre linguagem de usuário e código. Ainda é checkpoint humano.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Exemplo</div>
-      <h2>plan.md recortado</h2>
-      <div class="content">
-        <div class="code"># Plano: Carrinho de Compras
-
-## Arquivos
-- cart.js — lógica do carrinho: add, remove, total.
-- cart-ui.js — manipulação do DOM: painel e badge.
-- cart.css — estilos do painel lateral.
-
-## Estrutura de dados
-Carrinho = array no localStorage:
-{ id, nome, preco, quantidade }
-
-## Bibliotecas
-Nenhuma, conforme constitution.</div>
-      </div>
-      <aside class="notes">
-        <p>Se a IA sugerir biblioteca que viola constitution, pare aqui. Corrigir no plan é barato; corrigir depois no código é caro.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">2.4 tasks.md</div>
-      <h2>Passos executáveis</h2>
-      <p class="subtitle">A feature vira tarefas pequenas que a IA executa uma por vez, marcando o que já foi concluído.</p>
-      <div class="content">
-        <div class="code"># Tarefas: Carrinho de Compras
-
-- [ ] 1. Criar cart.js com addItem, removeItem, getTotal.
-- [ ] 2. Criar cart-ui.js com renderPainel e atualizarBadge.
-- [ ] 3. Adicionar botão "+ Carrinho" nos cards.
-- [ ] 4. Implementar painel lateral.
-- [ ] 5. Conectar clique do ícone ao painel.
-- [ ] 6. Implementar localStorage.
-- [ ] 7. Testar carrinho vazio.
-- [ ] 8. Testar refresh da página.</div>
-      </div>
-      <aside class="notes">
-        <p>Diga: com tasks, dá para pausar no meio e voltar amanhã. A IA sabe onde parou.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Imagem exemplo</div>
-      <h2>SDD como trilho</h2>
-      <div class="content">
-        <div class="image-slot">DIAGRAMA<br>constitution.md → spec.md → plan.md → tasks.md → código</div>
-      </div>
-      <aside class="notes">
-        <p>Use esse slide para desenhar o fluxo com setas. Se quiser, substitua o placeholder por um diagrama próprio.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Bloco 3</div>
-      <h2>O fluxo<br><span class="accent-pink">passo a passo</span></h2>
-      <div class="content">
-        <div class="flow">
-          <span>/constitution</span><span class="arrow">→</span><span>/specify</span><span class="arrow">→</span><span>/plan</span><span class="arrow">→</span><span>/tasks</span><span class="arrow">→</span><span>/implement</span>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Explique que esses são comandos do Spec Kit em agentes compatíveis. No AI Studio dá para fazer o mesmo fluxo manualmente.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Comandos do Spec Kit</div>
-      <h2>Digite literalmente</h2>
-      <div class="content">
-        <div class="code">/constitution  → cria a constitution.md
-/specify       → cria uma spec.md a partir da feature
-/plan          → gera o plan.md a partir da spec
-/tasks         → quebra o plan em tasks.md
-/implement     → executa as tasks, uma de cada vez</div>
-      </div>
-      <aside class="notes">
-        <p>Não entre em instalação ainda. Primeiro explique o fluxo mental.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Checkpoints humanos</div>
-      <h2>A palavra mais importante:<br><span class="accent-yellow">APROVA</span></h2>
+      <div class="kicker">Kit mínimo</div>
+      <h2>Três arquivos bastam para começar</h2>
       <div class="content three-col">
-        <div class="card green"><h3>Spec</h3><p>A IA propõe. Você revisa.</p></div>
-        <div class="card pink"><h3>Plan</h3><p>A IA planeja. Você valida.</p></div>
-        <div class="card yellow"><h3>Tasks</h3><p>A IA quebra. Você aprova.</p></div>
+        <article class="card green"><h3>spec.md</h3><p>Problema, usuário, escopo e aceitação.</p></article>
+        <article class="card pink"><h3>design.md</h3><p>Jornada, componentes, conteúdo e acessibilidade.</p></article>
+        <article class="card yellow"><h3>tasks.md</h3><p>Passos pequenos, ordenados e testáveis.</p></article>
       </div>
-      <aside class="notes">
-        <p>Esse é o ponto que diferencia SDD de deixar a IA trabalhar solta. O humano guia o trilho.</p>
-      </aside>
+      <aside class="notes"><p>Constitution, plan e arquivos específicos continuam possíveis, mas não são pré-requisito para equipes iniciantes.</p></aside>
     </section>
 
-    <section class="slide light">
-      <div class="kicker">Por que melhora?</div>
-      <h2>Menos retrabalho</h2>
+    <section class="slide dark">
+      <div class="kicker">spec.md</div>
+      <h2>O que precisa ser verdade?</h2>
       <div class="content two-col">
-        <ul class="big-list">
-          <li>Erro aparece cedo.</li>
-          <li>Mudança de ideia custa menos.</li>
-        </ul>
-        <ul class="big-list">
-          <li>A IA não inventa fora do trilho.</li>
-          <li>Você pode pausar e voltar depois.</li>
-        </ul>
+        <article class="card green"><h3>Inclua</h3><ul class="check-list"><li>Problema e público</li><li>Jornada principal</li><li>Critérios observáveis</li><li>Fora de escopo</li></ul></article>
+        <article class="card pink"><h3>Evite</h3><ul class="big-list"><li>Solução vaga</li><li>Lista infinita de features</li><li>Critério subjetivo</li><li>Detalhe sem decisão</li></ul></article>
       </div>
-      <aside class="notes">
-        <p>Exemplo: mudar uma spec leva minutos; refazer código depois de 3 horas de agente leva muito mais.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Uso real no hackathon</div>
-      <h2>Linha do tempo</h2>
-      <div class="content">
-        <div class="flow">
-          <span>Sexta 19h<br>constitution</span>
-          <span class="arrow">→</span>
-          <span>19h30<br>spec login</span>
-          <span class="arrow">→</span>
-          <span>20h<br>plan + tasks</span>
-          <span class="arrow">→</span>
-          <span>Sábado 9h<br>dashboard</span>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Mostre que as decisões da noite anterior continuam valendo porque estão no arquivo, não no “achismo” do chat.</p>
-      </aside>
+      <aside class="notes"><p>A spec descreve resultado e limites. A implementação pode mudar sem quebrar o contrato do produto.</p></aside>
     </section>
 
     <section class="slide light">
-      <div class="kicker">Bloco 4</div>
-      <h2>Ferramentas</h2>
-      <p class="subtitle">O conceito é o mesmo. O que muda é o embrulho: Spec Kit, Gemini CLI, Claude Code, Cursor, Kiro, Tessl ou AI Studio.</p>
-      <div class="content">
-        <div class="image-slot">LOGOS/PRINTS<br>Spec Kit, Gemini CLI, Claude Code, Cursor, Kiro, Tessl, AI Studio</div>
-      </div>
-      <aside class="notes">
-        <p>Não tente demonstrar tudo. O objetivo é a turma reconhecer opções e escolher o caminho mais simples.</p>
-      </aside>
-    </section>
+      <div class="kicker">Exemplo • Viva+ Recife</div>
+      <h2>Spec curta, decisão concreta</h2>
+      <div class="content align-start">
+        <div class="code"># Feature: agenda de eventos
 
-    <section class="slide dark">
-      <div class="kicker">4.1 GitHub Spec Kit</div>
-      <h2>O molde dos comandos</h2>
-      <div class="content two-col">
-        <div class="card green">
-          <h3>O que é?</h3>
-          <p>Ferramenta open-source do GitHub que implementa o fluxo dos 5 comandos.</p>
-        </div>
-        <div class="card pink">
-          <h3>Onde funciona?</h3>
-          <p>GitHub Copilot, Claude Code, Cursor e Gemini CLI.</p>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Explique “open-source, agnóstico de agente, gratuito”. Evite instalar ao vivo se puder falhar.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Instalação rápida</div>
-      <h2>Spec Kit</h2>
-      <div class="content">
-        <div class="code"># Requer uv
-uvx --from git+https://github.com/github/spec-kit specify init meu-projeto</div>
-        <p class="subtitle">Depois, abra o editor no projeto. Os comandos aparecem no chat do agente.</p>
-      </div>
-      <aside class="notes">
-        <p>Não gaste a aula depurando instalação. Recomende deixar instalado antes ou usar o caminho do AI Studio.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">O que ele gera</div>
-      <h2>Estrutura de pasta</h2>
-      <div class="content">
-        <div class="code">meu-projeto/
-├── .specify/
-├── constitution.md
-├── specs/
-│   └── 001-carrinho/
-│       ├── spec.md
-│       ├── plan.md
-│       └── tasks.md
-└── src/</div>
-      </div>
-      <aside class="notes">
-        <p>Destaque o histórico versionado: cada feature vira uma pasta numerada com decisões e tarefas.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Confusão comum</div>
-      <h2>Spec Kit não é a IA</h2>
-      <div class="content three-col">
-        <div class="card yellow"><h3>Spec Kit</h3><p>Cardápio com comandos e moldes.</p></div>
-        <div class="card pink"><h3>Agente</h3><p>O cozinheiro: Gemini CLI, Claude Code, Copilot.</p></div>
-        <div class="card green"><h3>Modelo</h3><p>O cérebro do cozinheiro: Gemini, Claude, GPT.</p></div>
-      </div>
-      <aside class="notes">
-        <p>Use a frase: “Sem cozinheiro, o cardápio não cozinha sozinho.”</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Agentes</div>
-      <h2>Qual escolher?</h2>
-      <div class="content">
-        <table class="table">
-          <thead>
-            <tr><th>Agente</th><th>Modelo</th><th>Free tier</th><th>Pré-requisito</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Gemini CLI</strong></td><td>Gemini</td><td>Generoso</td><td>Conta Google</td></tr>
-            <tr><td><strong>Claude Code</strong></td><td>Claude</td><td>Pago</td><td>Cartão</td></tr>
-            <tr><td><strong>GitHub Copilot CLI</strong></td><td>GPT/Claude</td><td>Estudantes</td><td>GitHub + Copilot</td></tr>
-            <tr><td><strong>Cursor CLI</strong></td><td>Vários</td><td>Limitado</td><td>Cursor</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <aside class="notes">
-        <p>Recomendação da aula: Gemini CLI, por reaproveitar a conta/chave do AI Studio da Aula 1.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Recomendação</div>
-      <h2>Gemini CLI pro bootcamp</h2>
-      <div class="content three-col">
-        <div class="card green"><h3>Mesma conta</h3><p>Usa a chave do Google AI Studio.</p></div>
-        <div class="card pink"><h3>Free tier</h3><p>Aguenta bem um hackathon de 48h.</p></div>
-        <div class="card yellow"><h3>Contexto</h3><p>Janela grande para ler o projeto.</p></div>
-      </div>
-      <aside class="notes">
-        <p>Não prometa cobrança ou limites fixos sem checar no dia; diga que é a opção prática para o bootcamp.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Passo a passo</div>
-      <h2>Spec Kit + Gemini CLI</h2>
-      <div class="content two-col">
-        <div class="code"># 1. Definir a chave
-setx GEMINI_API_KEY "cole-sua-chave-aqui"
-
-# Mac/Linux
-export GEMINI_API_KEY="cole-sua-chave-aqui"</div>
-        <div class="code"># 2. Instalar Gemini CLI
-npm install -g @google/gemini-cli
-
-# 3. Iniciar projeto
-uvx --from git+https://github.com/github/spec-kit specify init meu-projeto --ai gemini
-
-cd meu-projeto
-gemini</div>
-      </div>
-      <aside class="notes">
-        <p>Avise que a chave é como senha: não commitar, não colar em chat público, revogar se vazar.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Atalho do hackathon</div>
-      <h2>GEMINI.md mínimo</h2>
-      <div class="content two-col">
-        <div class="card yellow">
-          <h3>Sem Spec Kit?</h3>
-          <p>Crie um arquivo de regras na raiz: <strong>GEMINI.md</strong>, <strong>CLAUDE.md</strong> ou <strong>.cursorrules</strong>.</p>
-        </div>
-        <div class="code"># Projeto: GrãoBravo
-
-Stack: HTML + Tailwind + JS vanilla.
-Sem build tools.
-Estilo: dark mode, mobile-first.
-Idioma: PT-BR no UI, EN no código.
-Nunca instalar dependências sem perguntar.
-Sempre fazer commits pequenos.</div>
-      </div>
-      <aside class="notes">
-        <p>Esse é o mínimo viável de SDD. Para hackathon, muitas vezes já é suficiente.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">4.5 Sem instalar nada</div>
-      <h2>SDD direto<br><span class="accent-green">no AI Studio</span></h2>
-      <p class="subtitle">Você roda o fluxo na mão: System Instructions como constitution, mensagem inicial como spec, plano e tarefas na conversa.</p>
-      <aside class="notes">
-        <p>Esse é o caminho mais importante para público não técnico. Eles podem aplicar sem terminal.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Mapeamento direto</div>
-      <h2>Spec Kit → AI Studio</h2>
-      <div class="content">
-        <table class="table">
-          <thead><tr><th>No Spec Kit</th><th>No AI Studio</th></tr></thead>
-          <tbody>
-            <tr><td><strong>constitution.md</strong></td><td>System Instructions</td></tr>
-            <tr><td><strong>spec.md</strong></td><td>Primeira mensagem ou arquivo anexado</td></tr>
-            <tr><td><strong>plan.md</strong></td><td>“Antes de codar, devolva o plano”</td></tr>
-            <tr><td><strong>tasks.md</strong></td><td>“Quebre em tarefas numeradas”</td></tr>
-            <tr><td><strong>/implement</strong></td><td>“Execute a tarefa 1”</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <aside class="notes">
-        <p>Faça a ligação com a Aula 1: System Instructions é uma constitution persistente da conversa.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Receita prática</div>
-      <h2>System Instructions</h2>
-      <div class="content">
-        <div class="code">Você é parte do time GrãoBravo.
-
-Stack: HTML + Tailwind + JS vanilla, sem build tools.
-Estilo: mobile-first, dark mode, fonte Inter.
-Idioma: PT-BR no UI, EN no código.
-
-Regras de trabalho:
-- Antes de qualquer código, devolva um PLANO em bullets e espere meu OK.
-- Quebre features em TAREFAS numeradas. Faça uma por vez.
-- Nunca instale dependência sem perguntar.
-- Se eu mudar de ideia, atualize a spec antes do código.</div>
-      </div>
-      <aside class="notes">
-        <p>Mostre no AI Studio onde fica o painel System Instructions, se possível com print no próximo slide.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Imagem exemplo</div>
-      <h2>Onde colar no AI Studio</h2>
-      <div class="content two-col">
-        <div class="image-slot">PRINT<br>Painel “System Instructions” no AI Studio</div>
-        <div class="image-slot">PRINT<br>Primeira mensagem contendo a spec da feature</div>
-      </div>
-      <aside class="notes">
-        <p>Substitua por prints reais do AI Studio. A imagem ajuda muito porque a turma pode não conhecer a interface.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Spec no chat</div>
-      <h2>Primeira mensagem</h2>
-      <div class="content">
-        <div class="code">Spec: feature de Carrinho de Compras.
-
-Usuário: cliente navegando os produtos.
-
-Comportamento:
-1. Botão "+ Carrinho" em cada card.
-2. Painel lateral abre ao clicar no ícone.
-3. Total recalcula em tempo real.
+Usuário: pessoa procurando iniciativas LGBTQIAPN+ em Recife.
+Comportamento: filtrar eventos por data e categoria sem criar conta.
 
 Aceitação:
-- Sobrevive a refresh usando localStorage.
-- Total em BRL.
-- Carrinho vazio mostra mensagem.
+- cards mostram data, acessibilidade e link oficial;
+- filtros funcionam por teclado;
+- nenhum dado pessoal é coletado.
 
-Fora do escopo: cupons, frete, pagamento.</div>
+Fora de escopo: chat, geolocalização e avaliações públicas.</div>
       </div>
-      <aside class="notes">
-        <p>Depois disso, a IA deve devolver o plan porque a System Instruction mandou esperar antes de codar.</p>
-      </aside>
+      <aside class="notes"><p>Destaque como “fora de escopo” protege prazo e segurança.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Critérios de aceitação</div>
+      <h2>Troque opinião por comportamento observável</h2>
+      <div class="content compare">
+        <article class="card pink"><span class="tag">VAGO</span><h3>O filtro deve ser intuitivo</h3><p>Não informa como avaliar.</p></article>
+        <article class="card green"><span class="tag">TESTÁVEL</span><h3>Ao escolher “Hoje”, aparecem apenas eventos da data atual</h3><p>Funciona com mouse, toque e teclado.</p></article>
+      </div>
+      <aside class="notes"><p>Peça para a turma transformar um critério subjetivo em comportamento.</p></aside>
     </section>
 
     <section class="slide light">
-      <div class="kicker">Truques do AI Studio</div>
-      <h2>Use a favor do SDD</h2>
+      <div class="kicker">design.md</div>
+      <h2>O bloco de design vira contexto executável</h2>
       <div class="content two-col">
-        <ul class="big-list">
-          <li>Anexar constitution.md e spec.md.</li>
-          <li>Salvar o chat do projeto.</li>
-        </ul>
-        <ul class="big-list">
-          <li>Usar “Get code” depois.</li>
-          <li>Temperatura baixa para código.</li>
-        </ul>
+        <article class="card pink"><h3>Experiência</h3><ul class="check-list"><li>Jornada e prioridade</li><li>Tom de voz</li><li>Estados vazios e erros</li><li>Acessibilidade</li></ul></article>
+        <article class="card green"><h3>Sistema visual</h3><ul class="check-list"><li>Cores e contraste</li><li>Tipografia</li><li>Componentes</li><li>Referências e wireframes</li></ul></article>
       </div>
-      <aside class="notes">
-        <p>Explique temperatura: para código, 0.2–0.4 reduz improviso fora da spec.</p>
-      </aside>
+      <aside class="notes"><p>Este é o elo explícito entre os dois grandes blocos do evento.</p></aside>
     </section>
 
     <section class="slide dark">
-      <div class="kicker">Pirâmide de uso</div>
-      <h2>Do simples ao avançado</h2>
+      <div class="kicker">Jornada</div>
+      <h2>Descreva o caminho, não só as telas</h2>
       <div class="content">
-        <div class="flow">
-          <span>AI Studio puro</span><span class="arrow">→</span><span>AI Studio + spec</span><span class="arrow">→</span><span>Gemini CLI + GEMINI.md</span><span class="arrow">→</span><span>Spec Kit completo</span>
-        </div>
+        <div class="flow"><span>abre a agenda</span><b>→</b><span>filtra por data</span><b>→</b><span>lê acessibilidade</span><b>→</b><span>vai ao canal oficial</span></div>
+        <p class="subtitle">Cada passo precisa de estado inicial, ação, resposta e saída segura.</p>
       </div>
-      <aside class="notes">
-        <p>Recomende começar simples. Migre só quando o projeto pedir mais organização.</p>
-      </aside>
+      <aside class="notes"><p>Mostre que uma coleção de telas não é uma experiência completa.</p></aside>
     </section>
 
     <section class="slide light">
-      <div class="kicker">Alternativas</div>
-      <h2>Outras ferramentas</h2>
-      <div class="content">
-        <table class="table">
-          <thead><tr><th>Ferramenta</th><th>Quem fez</th><th>Diferencial</th></tr></thead>
-          <tbody>
-            <tr><td><strong>GitHub Spec Kit</strong></td><td>GitHub</td><td>Open-source, agnóstico de agente.</td></tr>
-            <tr><td><strong>Kiro</strong></td><td>AWS</td><td>IDE inteira em torno de SDD.</td></tr>
-            <tr><td><strong>Tessl</strong></td><td>Tessl</td><td>Spec-as-source: spec como fonte principal.</td></tr>
-            <tr><td><strong>Claude Code / Cursor</strong></td><td>Anthropic / Anysphere</td><td>Usam arquivos de regra como constitution.</td></tr>
-          </tbody>
-        </table>
+      <div class="kicker">tasks.md</div>
+      <h2>Uma tarefa, um resultado, um teste</h2>
+      <div class="content align-start">
+        <div class="code">- [ ] Criar dados fictícios de 6 eventos.
+- [ ] Renderizar EventCard com título, data e acessibilidade.
+- [ ] Implementar filtro por data.
+- [ ] Adicionar estado vazio.
+- [ ] Testar navegação por teclado.
+- [ ] Revisar em 360px e 1280px.</div>
       </div>
-      <aside class="notes">
-        <p>Mantenha panorâmico. Não venda ferramenta; mostre que o conceito é portátil.</p>
-      </aside>
+      <aside class="notes"><p>Se uma tarefa contém muitos “e”, provavelmente precisa ser quebrada.</p></aside>
     </section>
 
     <section class="slide dark">
-      <div class="kicker">Bloco 5</div>
-      <h2>Os 3 níveis<br><span class="accent-pink">de maturidade</span></h2>
+      <div class="kicker">Regras permanentes</div>
+      <h2>O agente precisa saber como trabalhar</h2>
+      <div class="content two-col">
+        <article class="card green"><h3>Arquivo de regras</h3><p><code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>GEMINI.md</code> ou equivalente.</p></article>
+        <article class="card yellow"><h3>Instrução útil</h3><p>Leia spec, design e tasks antes de editar. Execute apenas a próxima tarefa. Explique como testar.</p></article>
+      </div>
+      <aside class="notes"><p>O nome do arquivo depende da ferramenta. O princípio é estável: regras pequenas, explícitas e versionadas.</p></aside>
+    </section>
+
+    <section class="slide light activity">
+      <div class="kicker">Prática principal</div>
+      <h2>Escreva a spec da primeira feature</h2>
+      <div class="content two-col">
+        <div class="activity-box"><span class="time-badge">12 minutos</span><p>Problema, usuário, jornada, três critérios de aceitação e fora de escopo.</p></div>
+        <article class="card green"><h3>Use o projeto real</h3><p>Não crie exercício descartável. Esta spec seguirá para a implementação.</p></article>
+      </div>
+      <aside class="notes"><p>Circule procurando escopo claro, critérios testáveis e ausência de coleta desnecessária.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Revisão cruzada</div>
+      <h2>Outra equipe consegue encontrar as lacunas?</h2>
+      <div class="content four-col">
+        <article class="card green"><h3>Usuário</h3><p>Está específico?</p></article>
+        <article class="card pink"><h3>Escopo</h3><p>Cabe no evento?</p></article>
+        <article class="card yellow"><h3>Teste</h3><p>É observável?</p></article>
+        <article class="card blue"><h3>Risco</h3><p>Expõe alguém?</p></article>
+      </div>
+      <aside class="notes"><p>Seis minutos: quatro para revisão e dois para devolver um único ajuste prioritário.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Execução</div>
+      <h2>Documentos dirigem um loop curto</h2>
+      <div class="content">
+        <div class="flow"><span>ler contexto</span><b>→</b><span>próxima tarefa</span><b>→</b><span>implementar</span><b>→</b><span>testar</span><b>→</b><span>registrar</span></div>
+        <div class="callout">O agente não “terminou” até o teste passar.</div>
+      </div>
+      <aside class="notes"><p>Essa é a rotina profissional que será retomada no próximo módulo.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Mudança de ideia</div>
+      <h2>Atualize a decisão antes do código</h2>
+      <div class="content">
+        <ol class="steps"><li>Nomeie o que mudou e por quê.</li><li>Atualize spec ou design.</li><li>Revise tarefas afetadas.</li><li>Só então peça a alteração no código.</li></ol>
+      </div>
+      <aside class="notes"><p>Normalizar mudança é importante; a spec não congela o produto, apenas torna a mudança explícita.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Contexto dinâmico</div>
+      <h2>O projeto aprende com os próprios erros</h2>
+      <div class="content compare">
+        <article class="card pink"><h3>Problema repetido</h3><p>A IA instala dependências ou muda nomes sem avisar.</p></article>
+        <article class="card green"><h3>Aprendizado persistente</h3><p>Registre a regra no arquivo do agente e ajuste as próximas tarefas.</p></article>
+      </div>
+      <aside class="notes"><p>Vem diretamente do método descrito no podcast: transformar correção em memória do sistema.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Produção responsável</div>
+      <h2>Spec também contém segurança e cuidado</h2>
       <div class="content three-col">
-        <div class="card green"><h3>1. Spec-first</h3><p>Spec curta antes de prompar. Ideal para hackathon.</p></div>
-        <div class="card yellow"><h3>2. Spec-anchored</h3><p>Spec e código vivem juntos no repositório.</p></div>
-        <div class="card pink"><h3>3. Spec-as-source</h3><p>A spec é o projeto. Código pode ser descartável.</p></div>
+        <article class="card yellow"><h3>Dados</h3><p>O que é realmente necessário guardar?</p></article>
+        <article class="card pink"><h3>Abuso</h3><p>Como denunciar, moderar ou bloquear?</p></article>
+        <article class="card green"><h3>Falha</h3><p>Qual saída segura quando algo quebra?</p></article>
       </div>
-      <aside class="notes">
-        <p>Diga claramente: para hackathon, nível 1 é o alvo. O nível 3 é empresarial, não precisa agora.</p>
-      </aside>
+      <aside class="notes"><p>Para projetos comunitários, localização, identidade e conteúdo público exigem atenção especial.</p></aside>
     </section>
 
     <section class="slide light">
-      <div class="kicker">Quando NÃO usar</div>
-      <h2>SDD tem custo</h2>
-      <div class="content two-col">
-        <div class="card pink">
-          <h3>É exagero se...</h3>
-          <ul>
-            <li>Dura menos de 2 horas.</li>
-            <li>É script de uso único.</li>
-            <li>Projeto cabe em 1 arquivo.</li>
-          </ul>
-        </div>
-        <div class="card green">
-          <h3>Vai salvar se...</h3>
-          <ul>
-            <li>Time tem 2+ pessoas.</li>
-            <li>Dura mais de 1 dia.</li>
-            <li>Tem mais de 3 features.</li>
-          </ul>
-        </div>
+      <div class="kicker">Escolha de processo</div>
+      <h2>Nem todo projeto precisa do kit completo</h2>
+      <div class="content compare">
+        <article class="card green"><h3>Protótipo de 2 horas</h3><p>Uma spec curta e uma lista de tarefas podem bastar.</p></article>
+        <article class="card pink"><h3>Produto com dados e usuários</h3><p>Documente design, segurança, arquitetura e operação.</p></article>
       </div>
-      <aside class="notes">
-        <p>Apresente SDD como ferramenta, não dogma. Bom senso vence.</p>
-      </aside>
+      <aside class="notes"><p>Evite burocratizar. A documentação deve reduzir risco e retrabalho.</p></aside>
     </section>
 
-    <section class="slide dark">
-      <div class="kicker">Projeto já começou?</div>
-      <h2>Adote no meio<br><span class="accent-yellow">sem recomeçar</span></h2>
-      <div class="content three-col">
-        <div class="card green"><div class="metric">1</div><h3>Constitution</h3><p>Escreva baseada no que já existe.</p></div>
-        <div class="card pink"><div class="metric">2</div><h3>Uma spec</h3><p>Faça só da próxima feature.</p></div>
-        <div class="card yellow"><div class="metric">3</div><h3>Implement</h3><p>A partir daí, tudo consulta os dois.</p></div>
-      </div>
-      <aside class="notes">
-        <p>Frase útil: funciona como anestesia — alivia a dor sem cirurgia completa.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Bloco 6</div>
-      <h2>Checklist da spec mínima</h2>
-      <div class="content two-col">
-        <div class="card green">
-          <ul>
-            <li>Criei constitution com stack, estilo, restrições e idioma.</li>
-            <li>Coloquei na raiz do projeto.</li>
-            <li>Escrevi spec de 1 página por feature.</li>
-          </ul>
-        </div>
-        <div class="card pink">
-          <ul>
-            <li>Incluí usuário, comportamento e aceitação.</li>
-            <li>Marquei o que está fora do escopo.</li>
-            <li>Atualizei a spec antes do código quando mudei de ideia.</li>
-          </ul>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Esse slide pode virar checklist impresso para bancada do hackathon.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Ligação com Aula 1</div>
-      <h2>Os 5 ingredientes<br><span class="accent-green">moram em arquivos</span></h2>
+    <section class="slide dark activity">
+      <div class="kicker">Entrega da aula</div>
+      <h2>Salve o contexto no repositório</h2>
       <div class="content">
-        <table class="table">
-          <thead><tr><th>Ingrediente do prompt</th><th>Mora em...</th></tr></thead>
-          <tbody>
-            <tr><td>Papel</td><td>constitution.md</td></tr>
-            <tr><td>Tarefa</td><td>spec.md</td></tr>
-            <tr><td>Contexto</td><td>constitution.md + features anteriores</td></tr>
-            <tr><td>Formato</td><td>plan.md</td></tr>
-            <tr><td>Exemplos</td><td>spec.md</td></tr>
-          </tbody>
-        </table>
+        <div class="activity-box"><span class="time-badge">5 minutos</span><p>Crie ou atualize <strong>spec.md</strong>, <strong>design.md</strong> e <strong>tasks.md</strong>. Marque a primeira tarefa que será executada.</p></div>
       </div>
-      <aside class="notes">
-        <p>Essa tabela fecha a dupla de aulas: prompt engineering continua vivo, só distribuído em documentos.</p>
-      </aside>
+      <aside class="notes"><p>O artefato precisa estar disponível para toda a equipe, não apenas no chat de uma pessoa.</p></aside>
     </section>
 
-    <section class="slide light">
-      <div class="kicker">Recursos</div>
-      <h2>Para aprofundar</h2>
-      <div class="content two-col">
-        <ul>
-          <li>GitHub Spec Kit — repo oficial</li>
-          <li>Microsoft Learn — SDD com Spec Kit</li>
-          <li>Artigo SoftDesign sobre SDD</li>
-        </ul>
-        <ul>
-          <li>Série DSAcademy sobre SDD</li>
-          <li>Kiro — AWS</li>
-          <li>Tessl</li>
-        </ul>
+    <section class="slide light recap">
+      <div class="kicker">Recap</div>
+      <h2>Memória compartilhada produz velocidade sustentável</h2>
+      <div class="content">
+        <ul class="big-list"><li>Spec define verdade e limites.</li><li>Design preserva experiência.</li><li>Tarefas tornam execução observável.</li><li>Regras registram aprendizado.</li></ul>
+        <a class="pill" href="../vibe-coder-profissional/">Próximo: rotina profissional →</a>
       </div>
-      <aside class="notes">
-        <p>Não entre em todos os recursos. Diga que são para quem quiser ir além depois do hackathon.</p>
-      </aside>
+      <aside class="notes"><p>Feche reforçando que documentos existem para coordenar pessoas e agentes.</p></aside>
     </section>
-
-    <section class="slide dark">
-      <div class="kicker">Anexos</div>
-      <h2>Demos sugeridas</h2>
-      <div class="content two-col">
-        <div class="card green">
-          <ol>
-            <li>Antes e depois: sem spec vs com spec.</li>
-            <li>Tasks.md sendo marcado com [x].</li>
-          </ol>
-        </div>
-        <div class="card pink">
-          <ol start="3">
-            <li>Mudança de ideia atualizando a spec.</li>
-            <li>GEMINI.md de 8 linhas mudando o comportamento do agente.</li>
-          </ol>
-        </div>
-      </div>
-      <aside class="notes">
-        <p>Escolha duas demos dependendo do tempo. Instalação ao vivo pode falhar; prefira demonstrar fluxo já pronto.</p>
-      </aside>
-    </section>
-
-    <section class="slide light">
-      <div class="kicker">Exercício se sobrar tempo</div>
-      <h2>Em dupla</h2>
-      <div class="content two-col">
-        <div class="card yellow"><h3>5 linhas</h3><p>Escrevam uma constitution.md mínima para o projeto do hackathon.</p></div>
-        <div class="card green"><h3>1 página</h3><p>Escrevam uma spec.md para a próxima feature do MVP.</p></div>
-      </div>
-      <aside class="notes">
-        <p>Circule pela sala dando feedback. Procure principalmente: escopo claro, fora de escopo e critérios de aceitação testáveis.</p>
-      </aside>
-    </section>
-
-    <section class="slide dark">
-      <div class="kicker">Fechamento</div>
-      <h2><span class="accent-green">Aula 1:</span> conversar bem<br><span class="accent-pink">Aula 2:</span> memória que não esquece</h2>
-      <p class="subtitle">Prompt Engineering + SDD = kit completo do vibe coder de hackathon.</p>
-      <div class="content"><span class="stamp">Q&A</span></div>
-      <aside class="notes">
-        <p>Feche com perguntas. Se a turma estiver preparada, passe para o exercício prático de constitution + spec.</p>
-      </aside>
-    </section>
-
   </main>
 
-  <div class="progress" id="progress"></div>
-
-  <div class="controls">
-    <a class="deck-link" href="../../index.html">Início</a>
-
-    <button id="prevBtn" aria-label="Slide anterior">←</button>
-    <button id="notesBtn" aria-label="Mostrar notas">Notas</button>
-    <button id="nextBtn" aria-label="Próximo slide">→</button>
-
-    <a class="deck-link" href="../tools-superpoderes/">Próxima aula →</a>
-  </div>
-
-  <aside class="notes-panel" id="notesPanel" aria-live="polite">
-    <button class="close" id="closeNotes">Fechar</button>
-    <h4>Notas do apresentador</h4>
-    <div id="notesContent"></div>
-  </aside>
+  <div class="progress" id="progress" role="progressbar" aria-label="Progresso da aula"></div>
+  <a class="deck-link" href="../../index.html">Início</a>
+  <div class="scroll-status" id="scrollStatus" aria-live="polite"></div>
+  <nav class="controls" aria-label="Controles dos slides"><button id="prevBtn" aria-label="Slide anterior">←</button><button id="notesBtn" aria-label="Mostrar notas">Notas</button><button id="nextBtn" aria-label="Próximo slide">→</button></nav>
+  <aside class="notes-panel" id="notesPanel" aria-live="polite"><button class="close" id="closeNotes">Fechar</button><h4>Notas</h4><div id="notesContent"></div></aside>
 </body>
 </html>
