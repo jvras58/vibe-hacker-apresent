@@ -49,7 +49,7 @@
       <div class="kicker">spec.md</div>
       <h2>O que precisa ser verdade?</h2>
       <div class="content two-col">
-        <article class="card green"><h3>Inclua</h3><ul class="check-list"><li>Problema e público</li><li>Jornada principal</li><li>Critérios observáveis</li><li>Fora de escopo</li></ul></article>
+        <article class="card green"><h3>Inclua</h3><ul class="check-list"><li>Problema definido e público</li><li>Proposta de valor do pitch</li><li>Jornada principal</li><li>Critérios observáveis e fora de escopo</li></ul></article>
         <article class="card pink"><h3>Evite</h3><ul class="big-list"><li>Solução vaga</li><li>Lista infinita de features</li><li>Critério subjetivo</li><li>Detalhe sem decisão</li></ul></article>
       </div>
       <aside class="notes"><p>A spec descreve resultado e limites. A implementação pode mudar sem quebrar o contrato do produto.</p></aside>
@@ -88,10 +88,25 @@ Fora de escopo: chat, geolocalização e avaliações públicas.</div>
       <div class="kicker">design.md</div>
       <h2>O bloco de design vira contexto executável</h2>
       <div class="content two-col">
-        <article class="card pink"><h3>Experiência</h3><ul class="check-list"><li>Jornada e prioridade</li><li>Tom de voz</li><li>Estados vazios e erros</li><li>Acessibilidade</li></ul></article>
-        <article class="card green"><h3>Sistema visual</h3><ul class="check-list"><li>Cores e contraste</li><li>Tipografia</li><li>Componentes</li><li>Referências e wireframes</li></ul></article>
+        <article class="card pink"><h3>Experiência</h3><ul class="check-list"><li>Mapa de empatia e jornada</li><li>Lo-fi, hi-fi e prioridade</li><li>Roteiro e achados dos testes</li><li>Tom de voz e acessibilidade</li></ul></article>
+        <article class="card green"><h3>Sistema visual</h3><ul class="check-list"><li>Style guide e Atomic Design</li><li>Componentes e affordances</li><li>Variantes e estados</li><li>Referências de Storybook ou shadcn/ui</li></ul></article>
       </div>
       <aside class="notes"><p>Este é o elo explícito entre os dois grandes blocos do evento.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Contrato de componente</div>
+      <h2>Especifique antes de pedir para gerar</h2>
+      <div class="content align-start">
+        <div class="code">Componente: EventCard
+Função: resumir um evento e levar ao canal oficial.
+Conteúdo: título, data, categoria e recursos de acessibilidade.
+Variantes: destaque | padrão.
+Estados: default | hover | focus | loading | indisponível.
+Ação: botão “Ver detalhes”.
+Acessibilidade: foco visível e rótulo completo para leitor de tela.</div>
+      </div>
+      <aside class="notes"><p>Retome a linguagem aprendida em Component-Driven Design: estrutura, estilo e função modularizados.</p></aside>
     </section>
 
     <section class="slide dark">
@@ -109,10 +124,11 @@ Fora de escopo: chat, geolocalização e avaliações públicas.</div>
       <h2>Uma tarefa, um resultado, um teste</h2>
       <div class="content align-start">
         <div class="code">- [ ] Criar dados fictícios de 6 eventos.
-- [ ] Renderizar EventCard com título, data e acessibilidade.
-- [ ] Implementar filtro por data.
-- [ ] Adicionar estado vazio.
-- [ ] Testar navegação por teclado.
+- [ ] Implementar EventCard e suas variantes.
+- [ ] Adicionar estados de focus, loading e indisponível.
+- [ ] Compor a lista a partir do componente.
+- [ ] Implementar filtro por data e estado vazio.
+- [ ] Executar o roteiro de teste da manhã.
 - [ ] Revisar em 360px e 1280px.</div>
       </div>
       <aside class="notes"><p>Se uma tarefa contém muitos “e”, provavelmente precisa ser quebrada.</p></aside>
@@ -132,7 +148,7 @@ Fora de escopo: chat, geolocalização e avaliações públicas.</div>
       <div class="kicker">Prática principal</div>
       <h2>Escreva a spec da primeira feature</h2>
       <div class="content two-col">
-        <div class="activity-box"><span class="time-badge">12 minutos</span><p>Problema, usuário, jornada, três critérios de aceitação e fora de escopo.</p></div>
+        <div class="activity-box"><span class="time-badge">12 minutos</span><p>Transfira problema, público, proposta de valor, jornada, componentes e roteiro de teste da manhã para a spec.</p></div>
         <article class="card green"><h3>Use o projeto real</h3><p>Não crie exercício descartável. Esta spec seguirá para a implementação.</p></article>
       </div>
       <aside class="notes"><p>Circule procurando escopo claro, critérios testáveis e ausência de coleta desnecessária.</p></aside>
@@ -214,7 +230,7 @@ Fora de escopo: chat, geolocalização e avaliações públicas.</div>
       <h2>Memória compartilhada produz velocidade sustentável</h2>
       <div class="content">
         <ul class="big-list"><li>Spec define verdade e limites.</li><li>Design preserva experiência.</li><li>Tarefas tornam execução observável.</li><li>Regras registram aprendizado.</li></ul>
-        <a class="pill" href="../vibe-coder-profissional/">Próximo: rotina profissional →</a>
+        <a class="pill" href="../vibe-coder-profissional/index.html">Próximo: rotina profissional →</a>
       </div>
       <aside class="notes"><p>Feche reforçando que documentos existem para coordenar pessoas e agentes.</p></aside>
     </section>

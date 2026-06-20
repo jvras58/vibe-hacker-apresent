@@ -2,6 +2,8 @@
 
 Apresentação HTML para o bloco de vibe coding de um hackathon voltado à comunidade LGBTQIAPN+.
 
+O bloco acontece depois das aulas de Design Thinking, Component-Driven Design e Elevator Pitch. Os slides de vibe coding tratam problema, público, jornada, protótipos, style guide, componentes, testes e proposta de valor como artefatos de entrada — não como decisões a serem refeitas pela IA.
+
 ## Estrutura
 
 ```txt

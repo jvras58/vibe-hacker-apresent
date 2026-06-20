@@ -232,7 +232,7 @@ p { margin: 0; }
 
 .activity-box::before {
   content: "ATIVIDADE";
-  display: inline-block;
+  display: block;
   margin-bottom: 16px;
   color: var(--yellow);
   font-family: var(--mono);
@@ -272,6 +272,11 @@ p { margin: 0; }
 }
 
 .time-badge { color: var(--yellow); }
+.activity-box .time-badge {
+  padding: 11px 18px;
+  margin-bottom: 22px;
+  font-size: clamp(16px, 1.15vw, 20px);
+}
 .light .time-badge { color: #6e5900; }
 
 .big-list,
@@ -301,23 +306,32 @@ p { margin: 0; }
   font-weight: 900;
 }
 
-.check-list li::before { content: "•"; color: var(--green); }
-.light .check-list li::before { color: var(--green-dark); }
+.check-list li::before { content: "→"; color: var(--pink); }
+.light .check-list li::before { color: #a40052; }
 
 .steps { counter-reset: step; }
 .steps li {
-  display: grid;
-  grid-template-columns: 2.2em minmax(0, 1fr);
-  gap: 14px;
-  align-items: start;
+  position: relative;
+  display: block;
+  min-width: 0;
+  padding-left: 3.1em;
+  text-wrap: pretty;
 }
 
 .steps li::before {
   counter-increment: step;
   content: counter(step, decimal-leading-zero);
+  position: absolute;
+  top: .08em;
+  left: 0;
+  width: 2.25em;
   color: var(--pink);
   font-family: var(--mono);
   font-weight: 900;
+}
+
+.steps li strong {
+  margin-right: .3em;
 }
 
 .code {
@@ -590,11 +604,27 @@ body.home-page {
 }
 
 .home-page .section-title {
-  margin-bottom: 48px;
+  margin-bottom: 26px;
   color: var(--green);
   font-size: clamp(70px, 11vw, 155px);
   line-height: .86;
   letter-spacing: -.06em;
+}
+
+.home-kicker {
+  margin: 0 0 18px;
+  color: var(--pink);
+  font: 900 clamp(15px, 1.2vw, 20px) var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.home-intro {
+  max-width: 72ch;
+  margin: 0 0 48px;
+  color: rgba(255, 255, 255, .76);
+  font-size: clamp(19px, 1.55vw, 25px);
+  line-height: 1.5;
 }
 
 .home-page nav { width: 100%; }

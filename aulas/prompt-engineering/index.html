@@ -29,13 +29,45 @@
     </section>
 
     <section class="slide dark">
-      <div class="kicker">Ponte com Design</div>
-      <h2>A IA não substitui as decisões anteriores</h2>
-      <div class="content two-col">
-        <article class="card pink"><h3>O bloco de design entrega</h3><ul class="check-list"><li>Problema e público</li><li>Jornada principal</li><li>Wireframe</li><li>Cores e tom de voz</li></ul></article>
-        <article class="card green"><h3>O bloco de código transforma</h3><ul class="check-list"><li>Decisões em contexto</li><li>Wireframe em interface</li><li>Jornada em comportamento</li><li>Critérios em testes</li></ul></article>
+      <div class="kicker">Manhã → tarde</div>
+      <h2>Vibe coding começa onde o design terminou</h2>
+      <div class="content">
+        <div class="flow"><span>Design Thinking</span><b>→</b><span>Component-Driven Design</span><b>→</b><span>Elevator Pitch</span><b>→</b><span>Vibe Coding</span></div>
+        <div class="callout">Não vamos pedir à IA para decidir novamente o que o time já descobriu.</div>
       </div>
-      <aside class="notes"><p>Peça para as equipes deixarem o wireframe e as decisões visuais acessíveis. Eles serão usados em todas as atividades.</p></aside>
+      <aside class="notes"><p>Relembre a programação: Design Thinking às 9h, Component-Driven Design às 10h, Elevator Pitch às 11h e vibe coding a partir das 13h.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Handoff 1 • Design Thinking</div>
+      <h2>O problema já passou pelo Double Diamond</h2>
+      <div class="content align-start">
+        <div class="table-shell"><table class="table"><thead><tr><th>Etapa da manhã</th><th>Artefato usado à tarde</th></tr></thead><tbody><tr><td>Empatia: imersão, conexão e distanciamento</td><td>Mapa de empatia, 5 Porquês e jornada</td></tr><tr><td>Definição: quem, dor, onde e por quê</td><td>Problema e público do prompt/spec</td></tr><tr><td>Ideação: brainstorm, 6 chapéus, votação e afinidade</td><td>Direção escolhida e alternativas descartadas</td></tr><tr><td>Prototipagem: lo-fi, requisitos, style guide e hi-fi</td><td>Wireframe e referência visual</td></tr><tr><td>Teste: tarefa, observação e iteração</td><td>Critérios de aceitação e próximos ajustes</td></tr></tbody></table></div>
+        <p class="subtitle">A solução continua equilibrando o desejável, o tecnicamente possível e o financeiramente viável.</p>
+      </div>
+      <aside class="notes"><p>Este slide relembra, não reensina. Peça às equipes para abrirem seus artefatos da manhã.</p></aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Handoff 2 • Component-Driven Design</div>
+      <h2>A unidade da interface é o componente</h2>
+      <div class="content two-col align-start">
+        <article class="card pink"><h3>Reutilizar e padronizar</h3><ul class="check-list"><li>Projetar componentes, não páginas isoladas</li><li>Usar affordances familiares</li><li>Escolher switch, checkbox e outros pelo contexto</li><li>Organizar do simples ao composto com Atomic Design</li></ul></article>
+        <article class="card green"><h3>Especificar para a IA</h3><ul class="check-list"><li>Nome e função do componente</li><li>Variantes: primary, secondary, destructive</li><li>Estados: hover, active, disabled, loading e erro</li><li>Vocabulário e referências de Storybook ou shadcn/ui</li></ul></article>
+      </div>
+      <aside class="notes"><p>Reforce a mudança de paradigma vista pela manhã: definir e chamar, em vez de escrever e copiar.</p></aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Handoff 3 • Elevator Pitch</div>
+      <h2>O pitch já definiu o que merece ser construído</h2>
+      <div class="content three-col align-start">
+        <article class="card green"><h3>Proposta de valor</h3><p>Para quem, qual dor, qual solução e qual diferença.</p></article>
+        <article class="card pink"><h3>Narrativa e solução</h3><p>Time, problema real da comunidade, jornada, público inicial e vantagem.</p></article>
+        <article class="card yellow"><h3>Futuro e pedido</h3><p>Sustentabilidade, evidências, objetivo final e chamada para ação.</p></article>
+      </div>
+      <p class="subtitle">Um problema por pitch. O suporte visual já prevê hero, dor, três pontos da solução e CTA.</p>
+      <aside class="notes"><p>O pitch de 60 segundos vira o resumo executivo do projeto. Os primeiros 15 segundos precisam continuar claros na primeira tela.</p></aside>
     </section>
 
     <section class="slide light section-break">
@@ -62,9 +94,9 @@
         <ol class="steps">
           <li><strong>Papel:</strong> qual perspectiva ajuda nesta tarefa?</li>
           <li><strong>Objetivo:</strong> o que precisa existir ao final?</li>
-          <li><strong>Contexto:</strong> para quem, por quê e com quais referências?</li>
-          <li><strong>Restrições:</strong> o que precisa ou não pode acontecer?</li>
-          <li><strong>Critério:</strong> como saberemos que ficou bom?</li>
+          <li><strong>Contexto:</strong> público, dor, jornada, proposta de valor e referências?</li>
+          <li><strong>Restrições:</strong> escopo, componentes, estados, acessibilidade e privacidade?</li>
+          <li><strong>Critério:</strong> qual tarefa do roteiro de teste precisa funcionar?</li>
         </ol>
       </div>
       <aside class="notes"><p>Não trate “papel” como palavra mágica. O valor está em tornar explícita a perspectiva necessária para a tarefa.</p></aside>
@@ -78,8 +110,9 @@
 
 Objetivo: [ENTREGA EM UMA FRASE].
 Contexto: [PÚBLICO, PROBLEMA, REFERÊNCIA].
+Componentes: [NOMES, VARIANTES E ESTADOS].
 Restrições: [STACK, ESCOPO, ACESSIBILIDADE, PRIVACIDADE].
-Critérios de sucesso: [COMPORTAMENTOS OBSERVÁVEIS].
+Critérios de sucesso: [TAREFA E COMPORTAMENTOS OBSERVÁVEIS].
 
 Antes de implementar, devolva um plano curto e aguarde minha aprovação.</div>
       </div>
@@ -90,8 +123,8 @@ Antes de implementar, devolva um plano curto e aguarde minha aprovação.</div>
       <div class="kicker">Prática 1</div>
       <h2>Escreva o prompt da primeira tela</h2>
       <div class="content two-col">
-        <div class="activity-box"><span class="time-badge">7 minutos</span><p>Use o wireframe do bloco de design e as cinco peças do template.</p></div>
-        <article class="card yellow"><h3>Entregável</h3><p>Um prompt que outra equipe conseguiria executar sem pedir contexto básico.</p></article>
+        <div class="activity-box"><span class="time-badge">7 minutos</span><p>Use problema, jornada, proposta de valor, wireframe, style guide e componentes definidos pela manhã.</p></div>
+        <article class="card yellow"><h3>Entregável</h3><p>Um prompt que nomeia componentes, variantes, estados e a tarefa que será testada.</p></article>
       </div>
       <aside class="notes"><p>Circule pela sala. Procure objetivo verificável, referência visual, escopo e uma decisão de privacidade.</p></aside>
     </section>
@@ -109,9 +142,9 @@ Antes de implementar, devolva um plano curto e aguarde minha aprovação.</div>
       <div class="kicker">Referências</div>
       <h2>Mostrar costuma ser melhor que adjetivar</h2>
       <div class="content three-col">
-        <article class="card green"><h3>Wireframe</h3><p>Explica estrutura e prioridade.</p></article>
-        <article class="card pink"><h3>Design system</h3><p>Explica cores, tipografia e componentes.</p></article>
-        <article class="card yellow"><h3>Exemplo real</h3><p>Explica o nível de qualidade esperado.</p></article>
+        <article class="card green"><h3>Lo-fi e hi-fi</h3><p>Explicam estrutura, prioridade e refinamento esperado.</p></article>
+        <article class="card pink"><h3>Style guide</h3><p>Explica tipografia, cores, componentes, variantes e estados.</p></article>
+        <article class="card yellow"><h3>Teste e pitch</h3><p>Explicam a tarefa essencial, a proposta de valor e o CTA.</p></article>
       </div>
       <aside class="notes"><p>Conecte explicitamente ao bloco de design. Evite pedir apenas “moderno”, “bonito” ou “premium”.</p></aside>
     </section>
@@ -140,10 +173,10 @@ Antes de implementar, devolva um plano curto e aguarde minha aprovação.</div>
       <div class="kicker">Critérios</div>
       <h2>Escolha pelo problema, não pelo efeito “uau”</h2>
       <div class="content four-col">
-        <article class="card green"><h3>Clareza</h3><p>A pessoa entende o que fazer?</p></article>
-        <article class="card pink"><h3>Coerência</h3><p>Respeita o design definido?</p></article>
-        <article class="card yellow"><h3>Inclusão</h3><p>Linguagem e interação acolhem?</p></article>
-        <article class="card blue"><h3>Viabilidade</h3><p>Cabe no tempo do hackathon?</p></article>
+        <article class="card green"><h3>Desejável</h3><p>Resolve a dor observada na empatia?</p></article>
+        <article class="card pink"><h3>Usável</h3><p>Jornada, affordances e estados estão claros?</p></article>
+        <article class="card yellow"><h3>Factível</h3><p>É tecnicamente possível no hackathon?</p></article>
+        <article class="card blue"><h3>Viável</h3><p>Sustenta a proposta de valor e o pitch?</p></article>
       </div>
       <aside class="notes"><p>Faça cada equipe escolher uma direção e justificar com dois critérios.</p></aside>
     </section>
@@ -217,7 +250,7 @@ Antes de implementar, devolva um plano curto e aguarde minha aprovação.</div>
       <h2>Clareza vence velocidade sem direção</h2>
       <div class="content">
         <ul class="big-list"><li>Contexto vem do design.</li><li>Referência reduz ambiguidade.</li><li>Alternativas melhoram julgamento.</li><li>Teste transforma geração em construção.</li></ul>
-        <a class="pill" href="../spec-driven-development/">Próxima: memória do projeto →</a>
+        <a class="pill" href="../spec-driven-development/index.html">Próxima: memória do projeto →</a>
       </div>
       <aside class="notes"><p>Feche pedindo a uma equipe que explique o que mudou entre o primeiro prompt e a direção escolhida.</p></aside>
     </section>
