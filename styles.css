@@ -266,6 +266,18 @@
       letter-spacing: -.02em;
     }
 
+    .image-slot.media {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .image-slot.media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
     .light .image-slot {
       color: #0a513a;
       background:
@@ -603,6 +615,10 @@
 
     .content > .image-slot:only-child {
       min-height: clamp(415px, 55vh, 735px);
+    }
+
+    .content > .image-slot.media:only-child {
+      padding: 18px;
     }
 
     .content > .card:only-child {
