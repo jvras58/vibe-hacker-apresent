@@ -225,6 +225,8 @@ p { margin: 0; }
   text-wrap: balance;
 }
 
+.two-col > .callout { grid-column: 1 / -1; }
+
 .activity-box {
   border-color: var(--yellow);
   background: rgba(255, 219, 61, .08);
