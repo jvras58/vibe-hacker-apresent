@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aula: Ferramentas do Ecossistema — o que cerca o seu projeto</title>
+  <link rel="stylesheet" href="../../styles.css" />
+  <script src="../../script.js" defer></script>
+</head>
+<body>
+  <main class="deck" id="deck">
+
+    <section class="slide dark active">
+      <div class="kicker">Aula final • Bootcamp Hackathon • ~30 min</div>
+      <h1><span class="accent-green">Ferramentas</span><br><span class="accent-pink">do Ecossistema</span><br><span class="accent-yellow">do Projeto</span></h1>
+      <p class="subtitle">A IA constrói o código — mas o projeto precisa viver em algum lugar, guardar dados, ter visual, ser hospedado e ser mostrado.</p>
+      <div class="footer-hint">Use ← → para navegar • clique em “Notas” para o roteiro do apresentador</div>
+      <aside class="notes">
+        <p>Abra com a ideia central: a IA ajuda muito no código, mas o projeto precisa de ecossistema. Deploy, banco, visual, GitHub e organização ainda precisam ser decididos pelo time.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Mapa da aula</div>
+      <h2>Estrutura geral</h2>
+      <div class="timeline">
+        <div class="step"><b>0</b>3 min<br>Abertura</div>
+        <div class="step"><b>1</b>4 min<br>Editor local</div>
+        <div class="step"><b>2</b>6 min<br>Deploy grátis</div>
+        <div class="step"><b>3</b>6 min<br>Dados</div>
+        <div class="step"><b>4</b>3 min<br>Login</div>
+        <div class="step"><b>5</b>5 min<br>Visual IA</div>
+        <div class="step"><b>6</b>3 min<br>GitHub</div>
+        <div class="step"><b>7</b>2 min<br>Checklist</div>
+      </div>
+      <aside class="notes">
+        <p>Explique o tom da aula: cada bloco apresenta poucas opções, recomenda uma e diz quando usar ou pular. Não é uma aula técnica profunda.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Bloco 0</div>
+      <h2>A IA faz o código.<br><span class="accent-pink">E o resto?</span></h2>
+      <div class="content two-col">
+        <div class="card green">
+          <h3>O que a IA ajuda</h3>
+          <p>HTML, CSS, JS, componentes, telas, lógica, prompts, specs e tarefas.</p>
+        </div>
+        <div class="card pink">
+          <h3>O que ainda precisa existir</h3>
+          <p>Deploy, dados, login, visual, GitHub, demo, comunicação e organização.</p>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Use a frase: “A IA gera o código. Mas a IA não hospeda seu site, não guarda os pedidos, não compartilha a tela com o juiz.”</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Erro clássico</div>
+      <h2>Sexta-feira, 23h</h2>
+      <div class="content two-col">
+        <div class="card pink">
+          <h3>O time codou</h3>
+          <p>Todo mundo gerou código no AI Studio, colou arquivos e montou telas.</p>
+        </div>
+        <div class="card yellow">
+          <h3>Mas ninguém decidiu</h3>
+          <p>Como mostrar amanhã? Onde hospeda? Onde ficam os dados? Como o juiz acessa?</p>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Conte como história. Essa dor é comum: perder 3h com deploy e dados na véspera da apresentação.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Promessa da aula</div>
+      <h2>Mapa do<br><span class="accent-yellow">ecossistema</span></h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Morar</h3><p>Onde o projeto vai ser hospedado.</p></div>
+        <div class="card pink"><h3>Guardar</h3><p>Onde dados, login e arquivos ficam.</p></div>
+        <div class="card yellow"><h3>Mostrar</h3><p>Como compartilhar link, QR, repo e demo.</p></div>
+      </div>
+      <aside class="notes">
+        <p>Mostre que esta aula resolve decisões rápidas. Não é para aprender tudo, é para escolher o caminho certo.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Frase para fixar</div>
+      <h2>A IA escreve o código</h2>
+      <div class="content">
+        <div class="quote">Vocês escolhem o <span>ecossistema</span>.</div>
+      </div>
+      <aside class="notes">
+        <p>Faça pausa. Essa frase resume a aula.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Imagem exemplo</div>
+      <h2>O projeto no centro</h2>
+      <div class="content">
+        <div class="image-slot">DIAGRAMA<br>Projeto no centro → Editor, Deploy, Banco, Auth, Design, GitHub, Chat, Demo</div>
+      </div>
+      <aside class="notes">
+        <p>Substitua por diagrama radial: app no centro, ferramentas ao redor. Fica ótimo para abrir o tema.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Bloco 1</div>
+      <h2>💻 Onde escrever<br>e rodar código</h2>
+      <p class="subtitle">Vocês vão colar código que a IA gera. O lugar onde colam importa.</p>
+      <aside class="notes">
+        <p>Comece pelo básico: editor + servidor local. Para público iniciante, isso é mais importante do que framework.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Editor recomendado</div>
+      <h2>VS Code</h2>
+      <div class="content two-col">
+        <div class="card green">
+          <h3>Por que usar?</h3>
+          <p>Grátis, multiplataforma e padrão da indústria.</p>
+        </div>
+        <div class="card pink">
+          <h3>Alternativas</h3>
+          <ul>
+            <li>Cursor</li>
+            <li>Replit</li>
+            <li>StackBlitz / CodeSandbox</li>
+          </ul>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Recomendação para hackathon iniciante zero-instalação: Replit. Se o time consegue instalar e mexer local, VS Code.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Extensões essenciais</div>
+      <h2>3 cliques que valem muito</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Live Server</h3><p>Roda HTML com um clique e recarrega ao salvar.</p></div>
+        <div class="card pink"><h3>Prettier</h3><p>Formata o código automaticamente.</p></div>
+        <div class="card yellow"><h3>Copilot / Continue</h3><p>IA dentro do editor para autocomplete e ajuda.</p></div>
+      </div>
+      <aside class="notes">
+        <p>Não liste 20 extensões. Essas três já são suficientes para a maior parte dos alunos.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Servidor local</div>
+      <h2>Não basta abrir<br><span class="accent-pink">index.html</span></h2>
+      <div class="content">
+        <table class="table">
+          <thead><tr><th>Opção</th><th>Como usar</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Live Server</strong></td><td>Clique direito → Open with Live Server</td></tr>
+            <tr><td><strong>Python</strong></td><td>python3 -m http.server</td></tr>
+            <tr><td><strong>Node</strong></td><td>npx serve</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="notes">
+        <p>Explique que várias features exigem servidor: fetch, módulos, câmera, permissões e algumas integrações.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">DevTools</div>
+      <h2>O raio-X do site</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Console</h3><p>Mostra erros. Cole na IA para debugar.</p></div>
+        <div class="card pink"><h3>Network</h3><p>Mostra requisições e APIs.</p></div>
+        <div class="card yellow"><h3>Elements</h3><p>Inspeciona a tela e o CSS.</p></div>
+      </div>
+      <aside class="notes">
+        <p>Atalho: F12. Quase todo bug que a IA vai resolver começa com o erro do Console.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Bloco 2</div>
+      <h2>🚀 Onde o projeto<br><span class="accent-green">vive</span></h2>
+      <p class="subtitle">O projeto precisa de um link público para juiz testar, mentor opinar e time acessar no celular.</p>
+      <aside class="notes">
+        <p>Fale que deploy é parte da entrega. Se o juiz não consegue abrir, o projeto “não existe” para a demo.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">As três grandes</div>
+      <h2>Hospedagem grátis</h2>
+      <div class="content">
+        <table class="table">
+          <thead><tr><th>Serviço</th><th>Serve para</th><th>Como funciona</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Vercel</strong></td><td>Sites estáticos, Next.js, frontend</td><td>GitHub → deploy automático</td></tr>
+            <tr><td><strong>Netlify</strong></td><td>Sites estáticos e frontend</td><td>GitHub ou drag-and-drop</td></tr>
+            <tr><td><strong>Cloudflare Pages</strong></td><td>Sites estáticos</td><td>GitHub → pages.dev</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="notes">
+        <p>Recomendação para site puro: Netlify por drag-and-drop. É o caminho mais simples para não técnicos.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Recomendação</div>
+      <h2>Site puro?<br><span class="accent-yellow">Netlify drag-and-drop</span></h2>
+      <div class="content two-col">
+        <div class="card green">
+          <h3>Como funciona</h3>
+          <p>Arraste a pasta do projeto para o Netlify e receba um link público em segundos.</p>
+        </div>
+        <div class="image-slot">PRINT<br>Deploy por drag-and-drop no Netlify</div>
+      </div>
+      <aside class="notes">
+        <p>Demo recomendada: pegar um index.html qualquer, arrastar no Netlify e abrir o link no celular. Impacto máximo em pouco tempo.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">E se tiver backend?</div>
+      <h2>API própria</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Render</h3><p>Node, Python, Go grátis com sleep.</p></div>
+        <div class="card pink"><h3>Railway</h3><p>Backend com créditos/free tier.</p></div>
+        <div class="card yellow"><h3>Fly.io</h3><p>Mais técnico, mas poderoso.</p></div>
+      </div>
+      <p class="subtitle">Atalho: se você usa Supabase ou Firebase, provavelmente não precisa de servidor próprio.</p>
+      <aside class="notes">
+        <p>Não aprofunde. O objetivo é dizer que backend próprio é possível, mas costuma ser evitável no hackathon.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Domínio bonito</div>
+      <h2>Opcional</h2>
+      <div class="content two-col">
+        <div class="card green">
+          <h3>Já basta</h3>
+          <p>seuapp.vercel.app, seuapp.netlify.app ou seuapp.pages.dev.</p>
+        </div>
+        <div class="card pink">
+          <h3>Se quiser</h3>
+          <p>Registro.br para .com.br ou Namecheap para domínios internacionais.</p>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Diga com clareza: juiz não liga para domínio bonito. Link funcionando e demo fluida valem mais.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Bloco 3</div>
+      <h2>🗄️ Onde os dados ficam?</h2>
+      <p class="subtitle">Se o projeto precisa guardar dados que sobrevivem ao refresh, vocês precisam escolher: localStorage ou backend de verdade.</p>
+      <aside class="notes">
+        <p>Traga exemplos: cadastro, posts, pedidos, votos, favoritos, upload de arquivo.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">BaaS</div>
+      <h2>Backend sem<br><span class="accent-pink">programar backend</span></h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Banco</h3><p>Tabelas ou documentos prontos.</p></div>
+        <div class="card pink"><h3>API</h3><p>Leitura e escrita automáticas.</p></div>
+        <div class="card yellow"><h3>Extras</h3><p>Auth, storage e tempo real.</p></div>
+      </div>
+      <aside class="notes">
+        <p>BaaS = Backend-as-a-Service. Você não escreve rotas; usa um serviço que já entrega banco e API.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Duas opções</div>
+      <h2>Supabase ou Firebase</h2>
+      <div class="content">
+        <table class="table">
+          <thead><tr><th></th><th>Supabase</th><th>Firebase</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Quem é</strong></td><td>Open source, PostgreSQL</td><td>Google</td></tr>
+            <tr><td><strong>Banco</strong></td><td>SQL, tabelas</td><td>NoSQL, documentos</td></tr>
+            <tr><td><strong>Curva</strong></td><td>Média</td><td>Baixa</td></tr>
+            <tr><td><strong>Brilha em</strong></td><td>Dados relacionais</td><td>Apps simples e tempo real</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="notes">
+        <p>Recomendação: Supabase para aprender algo útil fora do hackathon; Firebase para entregar rápido se o app for simples.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Como integrar</div>
+      <h2>Visão simplificada</h2>
+      <div class="content">
+        <ol class="big-list">
+          <li>Criar conta e projeto.</li>
+          <li>Pegar URL + chave pública.</li>
+          <li>Mandar para a IA com a estrutura desejada.</li>
+          <li>Colar o código gerado e testar.</li>
+        </ol>
+      </div>
+      <aside class="notes">
+        <p>Importante: diferencie chave pública de segredo. Mesmo assim, evitar commitar dados sensíveis.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Prompt exemplo</div>
+      <h2>Supabase no app</h2>
+      <div class="content">
+        <div class="code">Integre Supabase no meu app.
+
+URL: [minha URL]
+Anon key: [minha anon key]
+
+Crie uma tabela pedidos com campos:
+id, nome, valor, criado_em.
+
+Implemente funções para:
+- listar pedidos
+- criar pedido
+- atualizar a tela após salvar</div>
+      </div>
+      <aside class="notes">
+        <p>Não coloque chaves reais em slide ou print público. Use valores fake na apresentação.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Quando NÃO precisa</div>
+      <h2>Não complique</h2>
+      <div class="content two-col">
+        <div class="card green">
+          <h3>localStorage resolve</h3>
+          <ul>
+            <li>Calculadora.</li>
+            <li>Conversor.</li>
+            <li>Joguinho local.</li>
+            <li>Landing page.</li>
+          </ul>
+        </div>
+        <div class="card pink">
+          <h3>Backend entra quando</h3>
+          <p>Existe cadastro, dado compartilhado, upload, votos, pedidos ou histórico entre dispositivos.</p>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Essa decisão economiza muito tempo. Não use banco só porque parece mais “profissional”.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Bloco 4</div>
+      <h2>🔐 Login de usuário</h2>
+      <p class="subtitle">Implementar login do zero é um buraco negro de tempo. No hackathon, use serviço pronto — ou pule login.</p>
+      <aside class="notes">
+        <p>Diga com firmeza: login raramente é a feature que ganha hackathon. Se não for essencial, pule.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Opções prontas</div>
+      <h2>Auth de bolso</h2>
+      <div class="content">
+        <table class="table">
+          <thead><tr><th>Serviço</th><th>Quando usar</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Supabase Auth</strong></td><td>Já está usando Supabase.</td></tr>
+            <tr><td><strong>Firebase Auth</strong></td><td>Já está usando Firebase.</td></tr>
+            <tr><td><strong>Clerk</strong></td><td>Quer login pronto com UI bonita.</td></tr>
+            <tr><td><strong>Auth0</strong></td><td>Mais empresarial e mais configurável.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="notes">
+        <p>Recomendação: login social com Google via Supabase, Firebase ou Clerk, se login for realmente necessário.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Pergunta-chave</div>
+      <h2>Precisa mesmo de login?</h2>
+      <div class="content three-col">
+        <div class="card pink"><h3>Perde algo?</h3><p>Se fechar e abrir, o usuário perde algo importante?</p></div>
+        <div class="card yellow"><h3>Juiz cria conta?</h3><p>A demo principal exige cadastro?</p></div>
+        <div class="card green"><h3>Vale ponto?</h3><p>Login melhora a história ou só atrasa?</p></div>
+      </div>
+      <aside class="notes">
+        <p>Se as respostas forem “não”, pule login e invista tempo na feature principal.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Bloco 5</div>
+      <h2>🎨 Visual com IA</h2>
+      <p class="subtitle">Sem designer? A IA pode gerar telas, layout, componentes, logo, hero e ícones para o MVP.</p>
+      <aside class="notes">
+        <p>Conecte com a Aula 3 de tools: geração de imagem e leitura de wireframe ajudam aqui também.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Ferramenta principal</div>
+      <h2>Google Stitch</h2>
+      <div class="content two-col">
+        <div class="card green">
+          <h3>O que faz?</h3>
+          <p>Gera UIs completas de app a partir de texto ou imagem.</p>
+        </div>
+        <div class="image-slot">PRINT<br>Google Stitch gerando telas navegáveis</div>
+      </div>
+      <aside class="notes">
+        <p>Mostre que é conversacional: descreve a interface em português, ajusta por prompt e exporta para Figma ou código.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Prompt exemplo</div>
+      <h2>Stitch em português</h2>
+      <div class="content">
+        <div class="code">Crie um app de delivery de café com:
+- tela de home
+- cardápio
+- carrinho
+- paleta marrom-creme
+- vibe artesanal
+- mobile-first
+- botões grandes e claros</div>
+      </div>
+      <aside class="notes">
+        <p>Se possível, faça demo ao vivo. É visual, rápido e combina com público não técnico.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Alternativas visuais</div>
+      <h2>Quando usar cada uma</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>v0</h3><p>Componente isolado bonito: formulário, dashboard, modal.</p></div>
+        <div class="card pink"><h3>Lovable</h3><p>App funcional inteiro com banco e deploy.</p></div>
+        <div class="card yellow"><h3>Uizard</h3><p>Rascunho à mão ou print virando mockup editável.</p></div>
+      </div>
+      <aside class="notes">
+        <p>Reforce: escolha uma. Não gastem o hackathon testando 10 ferramentas de UI.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Fluxo recomendado</div>
+      <h2>Stitch → AI Studio → Deploy</h2>
+      <div class="content">
+        <div class="flow">
+          <span>Stitch<br>gera telas</span>
+          <span class="arrow">→</span>
+          <span>AI Studio<br>conecta lógica</span>
+          <span class="arrow">→</span>
+          <span>Netlify/Vercel<br>publica</span>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Esse fluxo é excelente para times sem designer e sem muito backend.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Biblioteca visual</div>
+      <h2>Extras para refinar</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Figma / Canva</h3><p>Refinar telas, posts e demo.</p></div>
+        <div class="card pink"><h3>Lucide / Heroicons</h3><p>Ícones open-source e gratuitos.</p></div>
+        <div class="card yellow"><h3>Unsplash / Pexels</h3><p>Fotos profissionais para landing.</p></div>
+      </div>
+      <aside class="notes">
+        <p>Não aprofunde. Isso é biblioteca extra para quem quiser melhorar o visual depois que o MVP funcionar.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Bloco 6</div>
+      <h2>🐙 GitHub<br><span class="accent-green">mínimo viável</span></h2>
+      <p class="subtitle">GitHub é backup, colaboração e ponte para deploy automático.</p>
+      <aside class="notes">
+        <p>Explique para não técnicos: GitHub é a pasta do projeto na nuvem. Commit é um save. Push envia para a nuvem.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">3 frases</div>
+      <h2>Git sem trauma</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Repo</h3><p>Pasta do projeto na nuvem.</p></div>
+        <div class="card pink"><h3>Commit</h3><p>Um save com mensagem do que mudou.</p></div>
+        <div class="card yellow"><h3>Push</h3><p>Enviar os commits para a nuvem.</p></div>
+      </div>
+      <aside class="notes">
+        <p>Não mencione rebase, branch, merge conflict. Para hackathon iniciante: commit + push resolve 95%.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Fluxo mínimo</div>
+      <h2>GitHub Desktop</h2>
+      <div class="content">
+        <ol class="big-list">
+          <li>Criar conta no GitHub.</li>
+          <li>Instalar GitHub Desktop.</li>
+          <li>Criar repo novo.</li>
+          <li>Apontar para a pasta do projeto.</li>
+          <li>A cada feature: commit + push.</li>
+        </ol>
+      </div>
+      <aside class="notes">
+        <p>Mostre que não precisa de terminal. GitHub Desktop é suficiente para o público desta aula.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Por que importa?</div>
+      <h2>GitHub salva hackathon</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Deploy</h3><p>Vercel/Netlify atualizam a cada push.</p></div>
+        <div class="card pink"><h3>Backup</h3><p>Se o PC morrer, o projeto continua.</p></div>
+        <div class="card yellow"><h3>Visibilidade</h3><p>O juiz pode pedir o repo organizado.</p></div>
+      </div>
+      <aside class="notes">
+        <p>Recomendação: começar privado e decidir publicar no final.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Cuidado</div>
+      <h2>Não commite<br><span class="accent-pink">secrets</span></h2>
+      <div class="content two-col">
+        <div class="card pink">
+          <h3>Nunca</h3>
+          <p>Chaves de API, tokens, senhas e `.env` dentro do GitHub.</p>
+        </div>
+        <div class="card green">
+          <h3>Faça</h3>
+          <p>Use `.env`, adicione `.env` ao `.gitignore` e peça para a IA extrair chaves do código.</p>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Esse alerta é essencial. Se a IA gerar chave hardcoded, peça para mover para variável de ambiente.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Bloco 7</div>
+      <h2>🤝 Time organizado</h2>
+      <p class="subtitle">Time desorganizado perde tempo decidindo quem faz o quê. O mínimo resolve.</p>
+      <div class="content two-col">
+        <div class="card green">
+          <h3>Chat</h3>
+          <p>Discord para voz, texto e compartilhamento de tela.</p>
+        </div>
+        <div class="card pink">
+          <h3>Tarefas</h3>
+          <p>tasks.md, Notion, Trello ou Linear. Não precisa complicar.</p>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Recomendação mínima: Discord para chat + tasks.md no GitHub para organização.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Documentação do juiz</div>
+      <h2>README.md</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>O que é?</h3><p>Explicação curta do projeto.</p></div>
+        <div class="card pink"><h3>Como rodar?</h3><p>Passos mínimos para abrir/testar.</p></div>
+        <div class="card yellow"><h3>Link</h3><p>Deploy, demo, vídeo e screenshots.</p></div>
+      </div>
+      <aside class="notes">
+        <p>README bom economiza pergunta de juiz e aumenta percepção de profissionalismo.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Biblioteca extra</div>
+      <h2>Escolham entre o time</h2>
+      <div class="content">
+        <table class="table">
+          <thead><tr><th>Categoria</th><th>Ferramentas</th></tr></thead>
+          <tbody>
+            <tr><td>Design</td><td>Figma, Excalidraw, tldraw, Canva</td></tr>
+            <tr><td>Ícones</td><td>Lucide, Heroicons, Tabler, Phosphor</td></tr>
+            <tr><td>Fotos</td><td>Unsplash, Pexels, unDraw, Storyset</td></tr>
+            <tr><td>Fontes</td><td>Google Fonts, Fontshare</td></tr>
+            <tr><td>Paletas</td><td>Coolors, Tailwind palette</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="notes">
+        <p>Não precisa todo mundo conhecer tudo. Distribua: uma pessoa cuida do visual, outra deploy, outra README, outra GitHub.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Bloco 8</div>
+      <h2>Checklist<br><span class="accent-yellow">antes de codar</span></h2>
+      <div class="content two-col">
+        <div class="card green">
+          <ul>
+            <li>Deploy decidido?</li>
+            <li>Precisa de backend?</li>
+            <li>Precisa de login?</li>
+          </ul>
+        </div>
+        <div class="card pink">
+          <ul>
+            <li>Repo criado?</li>
+            <li>Discord do time?</li>
+            <li>Responsável pelo visual?</li>
+          </ul>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Esse checklist deve ser usado na primeira hora do hackathon.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Checklist</div>
+      <h2>Véspera da demo</h2>
+      <div class="content two-col">
+        <div class="card yellow">
+          <ul>
+            <li>Deploy testado em 2 celulares.</li>
+            <li>README atualizado.</li>
+            <li>Dados de teste populados.</li>
+          </ul>
+        </div>
+        <div class="card green">
+          <ul>
+            <li>Sem “asdfasdf” na demo.</li>
+            <li>Apresentação com cronômetro.</li>
+            <li>Link e QR prontos.</li>
+          </ul>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Dados de teste com nomes realistas fazem muita diferença na percepção do projeto.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Stack recomendada</div>
+      <h2>Resposta default segura</h2>
+      <div class="content">
+        <div class="code">Editor:        VS Code + Live Server
+IA texto:      AI Studio
+IA visual:     Google Stitch + AI Studio
+Frontend:      HTML + Tailwind + JS vanilla
+Backend:       Supabase, só se precisar
+Deploy:        Netlify ou Vercel
+Versionamento: GitHub Desktop + repo privado
+Chat:          Discord</div>
+      </div>
+      <aside class="notes">
+        <p>Use esse slide quando alguém perguntar “mas qual eu uso?”. Essa stack é simples, gratuita e boa para hackathon.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Demos sugeridas</div>
+      <h2>Escolha 2 ou 3</h2>
+      <div class="content two-col">
+        <div class="card green">
+          <ol>
+            <li>Drag-and-drop no Netlify.</li>
+            <li>Stitch gerando telas em português.</li>
+          </ol>
+        </div>
+        <div class="card pink">
+          <ol start="3">
+            <li>Supabase criando tabela e persistindo dado.</li>
+            <li>GitHub Desktop com commit + push.</li>
+          </ol>
+        </div>
+      </div>
+      <aside class="notes">
+        <p>Não faça demo de AWS/Azure/GCP, nem Git avançado. A aula precisa continuar acessível.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Mini-feira de stack</div>
+      <h2>Se sobrar tempo</h2>
+      <div class="content">
+        <ul class="big-list">
+          <li>Onde vai fazer deploy?</li>
+          <li>Precisa de backend? Qual?</li>
+          <li>Quem cuida do visual?</li>
+          <li>Quem cuida do GitHub?</li>
+          <li>Quem grava o backup da demo?</li>
+        </ul>
+      </div>
+      <aside class="notes">
+        <p>Cada dupla responde em 30 segundos. Forçar decisão na sala economiza dúvida no dia do evento.</p>
+      </aside>
+    </section>
+
+    <section class="slide light">
+      <div class="kicker">Ligação final</div>
+      <h2>Agora fechou o kit</h2>
+      <div class="content three-col">
+        <div class="card green"><h3>Aula 1</h3><p>Conversar com a IA.</p></div>
+        <div class="card pink"><h3>Aula 2</h3><p>Planejar o projeto.</p></div>
+        <div class="card yellow"><h3>Aula final</h3><p>Escolher o ecossistema.</p></div>
+      </div>
+      <aside class="notes">
+        <p>Mostre a narrativa completa: prompt, spec, tools/ecossistema. Agora é vibe coding com profissionalismo.</p>
+      </aside>
+    </section>
+
+    <section class="slide dark">
+      <div class="kicker">Fechamento</div>
+      <h2><span class="accent-green">Vibe coding</span><br><span class="accent-pink">com profissionalismo</span></h2>
+      <p class="subtitle">Vocês têm prompt, spec, deploy, dados, visual, GitHub e organização. Agora é construir.</p>
+      <div class="content"><span class="stamp">Q&A</span></div>
+      <aside class="notes">
+        <p>Feche com perguntas e incentive o time a decidir stack antes de começar a codar.</p>
+      </aside>
+    </section>
+
+  </main>
+
+  <div class="progress" id="progress"></div>
+
+  <div class="controls">
+    <button id="prevBtn" aria-label="Slide anterior">←</button>
+    <button id="notesBtn" aria-label="Mostrar notas">Notas</button>
+    <button id="nextBtn" aria-label="Próximo slide">→</button>
+  </div>
+
+  <aside class="notes-panel" id="notesPanel" aria-live="polite">
+    <button class="close" id="closeNotes">Fechar</button>
+    <h4>Notas do apresentador</h4>
+    <div id="notesContent"></div>
+  </aside>
+</body>
+</html>
