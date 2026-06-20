@@ -69,8 +69,12 @@
       <div class="kicker">Espaço para imagem</div>
       <h2>Exemplo visual: antes e depois</h2>
       <div class="content two-col">
-        <div class="image-slot">INSERIR PRINT<br>Prompt ruim → site genérico</div>
-        <div class="image-slot">INSERIR PRINT<br>Prompt bom → resultado usável</div>
+        <div class="image-slot media">
+          <img src="img/prompt_ruim.gif" alt="Prompt ruim → site genérico" />
+        </div>
+        <div class="image-slot media">
+          <img src="img/prompt_bom.gif" alt="Prompt bom → site usável" />
+        </div>
       </div>
       <aside class="notes"><p>Coloque dois prints lado a lado. Reforce que a IA copia o nível de detalhe que recebe.</p></aside>
     </section>
@@ -441,7 +445,7 @@ responda apenas com o bloco de código, sem texto antes ou depois</div></div>
       <h2>Padrões agênticos</h2>
       <p class="subtitle">Quando a LLM usa ferramentas, lê arquivos e decide o próximo passo, ela vira um agente.</p>
       <div class="content">
-        <div class="image-slot media"><img src="img/image.png" alt="LLM + ferramentas + arquivos + terminal = agente" /></div>
+        <div class="image-slot media"><img src="img/diagrama_agents.png" alt="LLM + ferramentas + arquivos + terminal = agente" /></div>
       </div>
       <aside class="notes"><p>Explique que Cursor, Claude Code, Lovable e v0 já funcionam como agentes em diferentes níveis.</p></aside>
     </section>
@@ -486,7 +490,7 @@ responda apenas com o bloco de código, sem texto antes ou depois</div></div>
 3. Uma dev, que implementa em HTML.
 
 Mostre o resultado de cada uma antes de passar para a próxima.</div>
-        <div class="image-slot">INSERIR DIAGRAMA<br>PM → Designer → Dev</div>
+        <div class="image-slot media"><img src="img/multiagent-diagram.png" alt="PM → Designer → Dev" /></div>
       </div>
       <aside class="notes"><p>Diga que esse truque sozinho melhora muito MVPs no hackathon.</p></aside>
     </section>
