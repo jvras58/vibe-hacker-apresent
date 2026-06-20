@@ -2,7 +2,9 @@
 
 Apresentação HTML para o bloco de vibe coding de um hackathon voltado à comunidade LGBTQIAPN+.
 
-O bloco acontece depois das aulas de Design Thinking, Component-Driven Design e Elevator Pitch. Os slides de vibe coding tratam problema, público, jornada, protótipos, style guide, componentes, testes e proposta de valor como artefatos de entrada — não como decisões a serem refeitas pela IA.
+O bloco acontece depois das aulas de Design Thinking, Component-Driven Design e Elevator Pitch. O kit comum fornece apenas contexto, problema, proposta de valor, público e jornada. Decisões visuais, funcionais e técnicas são responsabilidade das equipes durante as práticas.
+
+As práticas usam o kit comum em `materiais/viva-recife/` e registram decisões cumulativas em `materiais/dinamicas/folha-decisoes-viva-recife.md`.
 
 ## Estrutura
 
